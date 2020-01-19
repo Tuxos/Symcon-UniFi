@@ -1,0 +1,15 @@
+{
+    "id": "{6235ABA5-3E41-0C6A-9DD1-5BC94A2FD777}",
+    "name": "UniFi Controller",
+    "type": 3,
+    "vendor": "Ubiquiti",
+    "aliases":
+    [
+        "UniFi Controller"
+    ],
+    "url": "https://github.com/Tuxos/Symcon-UniFi",
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "UC"
+}
