@@ -6,7 +6,6 @@
         { "type": "ValidationTextBox", "name": "password", "caption": "Password" },
         { "type": "ValidationTextBox", "name": "site", "caption": "Site ID" },
         { "type": "ValidationTextBox", "name": "version", "caption": "Version" }
-        ]}
     ],
     "actions":
     [
