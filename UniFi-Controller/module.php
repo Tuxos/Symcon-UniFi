@@ -51,7 +51,8 @@
 
         public function disable_wlan( $wlanid, $bool ) {
 
-            $result = UC_callapi('disable_wlan('.$wlanid.', '.$bool.');');
+            $command = 'disable_wlan('.$wlanid.', '.$bool.')';
+            $result = UC_callapi($command);
 
             return $result;
         }
