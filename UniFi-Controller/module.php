@@ -47,7 +47,7 @@
 
             $results = $unifi_connection->disable_wlan($wlanid, $bool);
 
-            return var_dump($results);
+            // return var_dump($results);
         }
     }
 
