@@ -51,8 +51,8 @@
 
         public function disable_wlan($wlanid, $bool) {
 
-            $unifi_connection = UNIFI_callapi();
-            $results = $unifi_connection->disable_wlan($wlanid, $bool); // returns a PHP array containing alarm objects
+            $unifi_connect = UNIFI_callapi();
+            $results = $unifi_connect->disable_wlan($wlanid, $bool); // returns a PHP array containing alarm objects
    
             return var_dump($results);
         }
