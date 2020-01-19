@@ -33,7 +33,7 @@
         * ABC_MeineErsteEigeneFunktion($id);
         *
         */
-        private function callapi($command) {
+        public function callapi($command) {
 
             $url = $this->ReadPropertyString("url");
             $username = $this->ReadPropertyString("username");
@@ -51,7 +51,8 @@
 
         public function disable_wlan($wlanid, $bool) {
 
-            $command = 'disable_wlan('".$wlanid."', '.$bool.')';
+            $command = 'disable_wlan('.$wlanid.', '.$bool.')';
+            echo $command;
             $result = UNIFI_callapi($this->InstanceID, $command);
 
             return $result;
