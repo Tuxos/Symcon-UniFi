@@ -33,7 +33,7 @@
         * ABC_MeineErsteEigeneFunktion($id);
         *
         */
-        public function callapi($command) {
+        public function callapi() {
 
             $url = $this->ReadPropertyString("url");
             $username = $this->ReadPropertyString("username");
@@ -41,36 +41,17 @@
             $site = $this->ReadPropertyString("site");
             $version = $this->ReadPropertyString("version");
 
-            echo $command;
-
             $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
             $login = $unifi_connection->login();
-            //$results = $unifi_connection->disable_wlan("5c434b0bba3e820de56caf19", false);
-            $results = $unifi_connection->$command; // returns a PHP array containing alarm objects
 
-            return var_dump($results);
+            //$results = $unifi_connection->$command; // returns a PHP array containing alarm objects
+
+            return $unifi_connection->login();
         }
 
         public function disable_wlan($wlanid, $bool) {
 
-            $url = $this->ReadPropertyString("url");
-            $username = $this->ReadPropertyString("username");
-            $password = $this->ReadPropertyString("password");
-            $site = $this->ReadPropertyString("site");
-            $version = $this->ReadPropertyString("version");
-
-            if ($bool == 1)
-            {
-                $state = "true";
-            } else
-            {
-                $state = "false";
-            }
-            $command = 'disable_wlan('.$wlanid.', '.$state.')';
-
-            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
-            $login = $unifi_connection->login();
-            //$results = $unifi_connection->disable_wlan("5c434b0bba3e820de56caf19", false);
+            $unifi_connection = UNIFI_callapi();
             $results = $unifi_connection->disable_wlan($wlanid, $bool); // returns a PHP array containing alarm objects
    
             return var_dump($results);
