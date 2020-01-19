@@ -49,7 +49,7 @@
             return var_dump($results);
         }
 
-        public function disable_wlan($wlanid, $bool) {
+        public function disable_wlan($wlanid, boolean $bool) {
 
             $command = 'disable_wlan('.$wlanid.', '.$bool.')';
             echo $command;
