@@ -24,6 +24,13 @@
 
             $this->RegisterVariableBoolean("online", "Online", "~Switch",1);
 
+            if (UNIFI_login_test($this->InstanceID) == "true")
+			{
+				$this->SetStatus(102);
+            } else
+            {
+                $this->SetStatus(103);
+			}
         }
  
         /**
