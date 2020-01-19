@@ -9,7 +9,7 @@
     ],
     "actions":
     [
-        { "type": "Button", "label": "Verify login", "onClick": "XXXX" }
+        { "type": "Button", "label": "Verify login", "onClick": "UNIFI_login_test($id);" }
     ],
     "status":
     [
