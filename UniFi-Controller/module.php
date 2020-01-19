@@ -1,5 +1,7 @@
 <?php
-    
+
+    include __DIR__ . "/../libs/Client.php";
+
     class UniFiController extends IPSModule {
  
         // Überschreibt die interne IPS_Create($id) Funktion
@@ -32,8 +34,6 @@
         *
         */
         public function callapi(string $command ) {
-
-            include_once(__DIR__ . "../libs/Client.php");
 
             $url = $this->ReadPropertyString("url");
             $username = $this->ReadPropertyString("username");
