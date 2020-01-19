@@ -9,7 +9,7 @@
             // Diese Zeile nicht löschen.
             parent::Create();
  
-            $this->RegisterPropertyString("url", "https://192.168.1.7:8443");
+            $this->RegisterPropertyString("url", "https://<Controller_IP>:8443");
             $this->RegisterPropertyString("username", "api_user");
             $this->RegisterPropertyString("password", "");
             $this->RegisterPropertyString("site", "default");
@@ -33,23 +33,8 @@
         * ABC_MeineErsteEigeneFunktion($id);
         *
         */
-        public function callapi() {
 
-            $url = $this->ReadPropertyString("url");
-            $username = $this->ReadPropertyString("username");
-            $password = $this->ReadPropertyString("password");
-            $site = $this->ReadPropertyString("site");
-            $version = $this->ReadPropertyString("version");
-
-            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
-            $login = $unifi_connection->login();
-
-            //$results = $unifi_connection->$command; // returns a PHP array containing alarm objects
-
-            return $unifi_connection->login();
-        }
-
-        public function switchwlan($wlanid, $bool) {
+        public function disable_wlan($wlanid, $bool) {
 
             $url = $this->ReadPropertyString("url");
             $username = $this->ReadPropertyString("username");
@@ -61,7 +46,7 @@
             $login = $unifi_connection->login();
 
             $results = $unifi_connection->disable_wlan($wlanid, $bool);
-            
+
             return var_dump($results);
         }
     }
