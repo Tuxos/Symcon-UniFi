@@ -51,7 +51,7 @@
 
         public function disable_wlan($wlanid, boolean $bool) {
 
-            $command = 'disable_wlan('.$wlanid.', '.$bool.')';
+            $command = 'disable_wlan('.$wlanid.', '.$bool.');';
             echo $command;
             $result = UNIFI_callapi($this->InstanceID, $command);
 
