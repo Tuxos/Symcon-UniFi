@@ -48,9 +48,11 @@
             return var_dump($results);
         }
 
-        public function disable_wLan( $wlanid, $bool ) {
+        public function disable_wlan( $wlanid, $bool ) {
 
-            return UC_callapi('disable_wlan("'.$wlanid.'", ".$bool.")');
+            $result = UC_callapi('disable_wlan('.$wlanid.', '.$bool.');');
+
+            return $result;
         }
     }
 
