@@ -61,7 +61,7 @@
             ob_start();
             $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
             $login = $unifi_connection->login();
-            ob_end_flush();
+            ob_end_clean();
 
             if ($login == "bool(true)")
             {
