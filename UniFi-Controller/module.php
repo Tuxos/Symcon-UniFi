@@ -58,9 +58,11 @@
             $site = $this->ReadPropertyString("site");
             $version = $this->ReadPropertyString("version");
 
+            ob_start("callback");
             $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
             $login = $unifi_connection->login();
-
+            ob_end_flush();
+            
             if ($login == "bool(true)")
             {
                 $result = "true";
