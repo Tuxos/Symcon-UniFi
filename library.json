@@ -1,0 +1,12 @@
+{
+    "id": "{C3D2DE71-89AA-888C-AC30-485DAE5FAD9E}",
+    "author": "Dennis Deitermann",
+    "name": "UniFi Controller",
+    "url": "https://github.com/Tuxos/Symcon-UniFi",
+    "compatibility": {
+        "version": "5.2"
+    },
+    "version": "0.1",
+    "build": 1,
+    "date": 0
+}
