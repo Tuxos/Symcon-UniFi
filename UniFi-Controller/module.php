@@ -69,7 +69,7 @@
                 $result = "false";
             }
 
-            return echo $result;
+            return $result;
         }
 
     }
