@@ -49,6 +49,21 @@
 
             // return var_dump($results);
         }
+
+        public function login_test() {
+
+            $url = $this->ReadPropertyString("url");
+            $username = $this->ReadPropertyString("username");
+            $password = $this->ReadPropertyString("password");
+            $site = $this->ReadPropertyString("site");
+            $version = $this->ReadPropertyString("version");
+
+            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
+            $login = $unifi_connection->login();
+
+            return var_dump($login);
+        }
+
     }
 
 ?>
