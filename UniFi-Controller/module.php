@@ -33,7 +33,7 @@
         * ABC_MeineErsteEigeneFunktion($id);
         *
         */
-        public function callapi(string $command) {
+        private function callapi($command) {
 
             $url = $this->ReadPropertyString("url");
             $username = $this->ReadPropertyString("username");
