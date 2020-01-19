@@ -51,9 +51,17 @@
 
         public function switchwlan($wlanid, $bool) {
 
-            $unifi_connect = UNIFI_callapi($this->InstanceID);
-            $results = $unifi_connect->disable_wlan($wlanid, $bool); // returns a PHP array containing alarm objects
-   
+            $url = $this->ReadPropertyString("url");
+            $username = $this->ReadPropertyString("username");
+            $password = $this->ReadPropertyString("password");
+            $site = $this->ReadPropertyString("site");
+            $version = $this->ReadPropertyString("version");
+
+            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
+            $login = $unifi_connection->login();
+
+            $results = $unifi_connection->disable_wlan($wlanid, $bool);
+            
             return var_dump($results);
         }
     }
