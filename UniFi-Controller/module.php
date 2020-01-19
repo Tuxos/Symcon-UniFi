@@ -52,7 +52,7 @@
         public function disable_wlan( $wlanid, $bool ) {
 
             $command = 'disable_wlan('.$wlanid.', '.$bool.')';
-            $result = UNIFI_callapi($command);
+            // $result = UNIFI_callapi($command);
 
             return $result;
         }
