@@ -66,9 +66,13 @@
             if ($login == "bool(true)")
             {
                 $result = "true";
+                $id = IPS_GetVariableIDByName ("Online", $this->InstanceID);
+                SetValueBoolean($id, true);
             } else
             {
                 $result = "false";
+                $id = IPS_GetVariableIDByName ("Online", $this->InstanceID);
+                SetValueBoolean($id, false);
             }
 
             return $result;
