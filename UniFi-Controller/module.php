@@ -61,6 +61,14 @@
             $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
             $login = $unifi_connection->login();
 
+            if ($login['bool'] == 1)
+            {
+                echo "true";
+            } else
+            {
+                echo "false";
+            }
+
             return var_dump($login);
         }
 
