@@ -1,0 +1,20 @@
+{
+    "elements":
+    [
+        { "type": "ValidationTextBox", "name": "url", "caption": "Controller URL" },
+        { "type": "ValidationTextBox", "name": "username", "caption": "Username" },
+        { "type": "ValidationTextBox", "name": "password", "caption": "Password" },
+        { "type": "ValidationTextBox", "name": "site", "caption": "Site ID" },
+        { "type": "ValidationTextBox", "name": "version", "caption": "Version" }
+        ]}
+    ],
+    "actions":
+    [
+        { "type": "Button", "label": "Verify login", "onClick": "XXXX" }
+    ],
+    "status":
+    [
+        { "code": 102, "icon": "active", "caption": "Login information valid" },
+        { "code": 201, "icon": "error", "caption": "Login failed" }
+    ]
+}
