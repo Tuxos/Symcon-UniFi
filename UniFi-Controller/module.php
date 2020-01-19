@@ -29,7 +29,7 @@
 				$this->SetStatus(102);
             } else
             {
-                $this->SetStatus(103);
+                $this->SetStatus(203);
 			}
         }
  
