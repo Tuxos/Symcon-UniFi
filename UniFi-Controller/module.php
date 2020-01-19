@@ -71,7 +71,7 @@
             $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
             $login = $unifi_connection->login();
             //$results = $unifi_connection->disable_wlan("5c434b0bba3e820de56caf19", false);
-            $results = $unifi_connection->disable_wlan($wlanid, $state); // returns a PHP array containing alarm objects
+            $results = $unifi_connection->disable_wlan($wlanid, $bool); // returns a PHP array containing alarm objects
    
             return var_dump($results);
         }
