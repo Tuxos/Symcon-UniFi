@@ -63,13 +63,13 @@
 
             if ($login == "bool(true)")
             {
-                echo "true";
+                $result = "true";
             } else
             {
-                echo "false";
+                $result = "false";
             }
 
-            return var_dump($login);
+            return echo $result;
         }
 
     }
