@@ -111,7 +111,16 @@
                     $VarID = IPS_CreateVariable(0);
                     IPS_SetName($VarID, $wlan[$nr]->name);
                     IPS_SetParent($VarID, @IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
+                    IPS_SetVariableCustomProfile($VarID, "~Switch");
+                    $VarID = IPS_CreateVariable(3);
+                    IPS_SetName($VarID, "wlan_id");
+                    IPS_SetParent($VarID, @IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))));
+                    SetValueString($VarID, $wlan[$nr]->_id);
+                  } else
+                  {
+                    SetValueString(IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))), $wlan[$nr]->_id);
                   }
+
                 echo $wlan[$nr]->name;
                 echo " ";
                 echo $wlan[$nr]->_id;
