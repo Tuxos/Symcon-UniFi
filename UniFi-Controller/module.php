@@ -14,7 +14,7 @@
             $this->RegisterPropertyString("password", "");
             $this->RegisterPropertyString("site", "default");
             $this->RegisterPropertyString("version", "5.12.35");
-            $this->RegisterPropertyInteger("intervall", "5000");
+            $this->RegisterPropertyInteger("intervall", "60");
 
         }
  
@@ -25,7 +25,7 @@
 
             $this->RegisterVariableBoolean("online", "Online", "~Switch",1);
 
-            $this->RegisterTimer('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_login_test($id);');
+            $this->RegisterTimerUNIFI('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_login_test($id);');
 
             if (UNIFI_login_test($this->InstanceID) == "true")
 			{
@@ -36,7 +36,7 @@
 			}
         }
  
-	    protected function RegisterTimer($ident, $interval, $script) {
+	    protected function RegisterTimerUNIFI($ident, $interval, $script) {
 
 		    $id = @IPS_GetObjectIDByIdent($ident, $this->InstanceID);
 
