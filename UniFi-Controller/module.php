@@ -138,6 +138,7 @@
                   }
             }
 
+            $wlanids = array();
             $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
             foreach ($varids as $nr => $test)
             {
