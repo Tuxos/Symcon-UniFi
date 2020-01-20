@@ -105,7 +105,7 @@
             $wlan = $unifi_connection->list_wlanconf();
             foreach ($wlan as $nr => $test)
             {
-                $check = IPS_InstanceExists(@IPS_GetVariableIDByName($wlan[$nr]->name, @IPS_GetInstanceIDByName("WLAN", $this->InstanceID)));
+                $check = IPS_VariableExists(@IPS_GetVariableIDByName($wlan[$nr]->name, @IPS_GetInstanceIDByName("WLAN", $this->InstanceID)));
                 if ($check == false) 
                   {
                     $VarID = IPS_CreateVariable(0);
