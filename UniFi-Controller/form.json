@@ -13,6 +13,7 @@
     ],
     "status":
     [
+        { "code": 101, "icon": "active", "caption": "UniFi Controller Instanz wird erstellt..." },
         { "code": 102, "icon": "active", "caption": "Login information valid" },
         { "code": 203, "icon": "error", "caption": "Login failed" }
     ]
