@@ -44,6 +44,37 @@
 			}
         }
  
+        private function DeleteObject($ObjectId) {
+            $Object     = IPS_GetObject($ObjectId);
+            $ObjectType = $Object['ObjectType'];
+            switch ($ObjectType) {
+            case 0: // Category
+                DeleteCategory($ObjectId);
+                break;
+            case 1: // Instance
+                EmptyCategory($ObjectId);
+                IPS_DeleteInstance($ObjectId);
+                break;
+            case 2: // Variable
+                IPS_DeleteVariable($ObjectId);
+                break;
+            case 3: // Script
+                IPS_DeleteScript($ObjectId, false);
+                break;
+            case 4: // Event
+                IPS_DeleteEvent($ObjectId);
+                break;
+            case 5: // Media
+                IPS_DeleteMedia($ObjectId, true);
+                break;
+            case 6: // Link
+                IPS_DeleteLink($ObjectId);
+                break;
+            default:
+            Error ("Found unknown ObjectType $ObjectType");
+          }
+        } 
+
 	    protected function RegisterTimerUNIFI($ident, $interval, $script) {
 
 		    $id = @IPS_GetObjectIDByIdent($ident, $this->InstanceID);
@@ -162,7 +193,24 @@
       
             $exist = array_diff($wlanids, $wlanidsuc);
             if (empty($exist) == false) 
-            {}
+            {
+                foreach($exist as $nr => $test)
+                {
+                    foreach ($varids as $nr2 => $test)
+                    {
+                        $id = IPS_GetParent(IPS_GetVariableIDByName("wlan_id", $varids[$nr2]));
+                        if ($exist[$nr] == $check) 
+                        {
+                            $children = IPS_GetChildrenIDs($id);
+                            foreach ($children as $nr3 => $test)
+                            {
+                                DeleteObject($children[$nr3]);
+                            }
+                            DeleteObject($id);
+                        }
+                    }
+                }
+            }
       
             var_dump($exist);
 
