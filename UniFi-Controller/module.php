@@ -202,8 +202,10 @@
                         if ($exist[$nr] == $check) 
                         {
                             $children = IPS_GetChildrenIDs($id);
+                            echo $id." id \n";
                             foreach ($children as $nr3 => $test)
                             {
+                                echo $children[$nr3]." Children \n";
                                 UNIFI_DeleteObject($children[$nr3]);
                             }
                             UNIFI_DeleteObject($id);
