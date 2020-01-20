@@ -113,7 +113,7 @@
                     IPS_SetParent($VarID, IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
                     IPS_SetVariableCustomProfile($VarID, "~Switch");
                     SetValueBoolean($VarID, $wlan[$nr]->enabled);
-                    IPS_SetVariableCustomAction($VarID, IPS_GetScriptIDByFile("UNIFI_wlan-action-script.php"));
+                    IPS_SetVariableCustomAction($VarID, IPS_GetScriptIDByFile("/../libs/UNIFI_wlan-action-script.php"));
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "wlan_id");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))));
