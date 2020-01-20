@@ -113,9 +113,10 @@
                 array_push($wlanids,$check);
             }
 
+            $wlanidsuc = array();
             foreach ($wlan as $nr => $test)
             {
-                arra_push($wlanidsuc, $wlan[$nr]->_id);
+                array_push($wlanidsuc, $wlan[$nr]->_id);
             }
 
             foreach ($wlanids as $nr2 => $test2)
