@@ -14,7 +14,7 @@
             $this->RegisterPropertyString("password", "");
             $this->RegisterPropertyString("site", "default");
             $this->RegisterPropertyString("version", "5.12.35");
-            $this->RegisterPropertyInteger("intervall", "60");
+            $this->RegisterPropertyInteger("intervall", "120");
 
             $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
             if ($check == false)
@@ -136,7 +136,11 @@
                     SetValueBoolean(IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))), $wlan[$nr]->enabled);
                     SetValueString(IPS_GetVariableIDByName("Passphrase", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->x_passphrase);
                   }
-            } 
+            }
+
+            $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
+
+            var_dump($varids);
 
             if ($login == "bool(true)")
             {
