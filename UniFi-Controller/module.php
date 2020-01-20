@@ -122,7 +122,7 @@
 
             $results = $unifi_connection->list_wlanconf();
 
-            return var_dump($results);
+            return $results;
         }
 
 
