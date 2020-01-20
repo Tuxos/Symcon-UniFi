@@ -106,7 +106,7 @@
                   {
                     $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
                     IPS_SetName($InsID, $wlan[$nr]);
-                    IPS_SetParent($InsID, $this->InstanceID);
+                    IPS_SetParent($InsID, @IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
                   }
                 echo $wlan[$nr]->name;
                 echo " ";
