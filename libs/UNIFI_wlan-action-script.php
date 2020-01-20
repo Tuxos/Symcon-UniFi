@@ -4,10 +4,10 @@
 
     if ($_IPS['VALUE'] == false)
       {
-        UNIFI_disable_wlan($this->InstanceID, GetValueString(IPS_GetVariableIDByName("wlan_id", $_IPS['VARIABLE'])), true);
+        UNIFI_disable_wlan(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE'])), GetValueString(IPS_GetVariableIDByName("wlan_id", $_IPS['VARIABLE'])), true);
       } else
       {
-        UNIFI_disable_wlan($this->InstanceID, GetValueString(IPS_GetVariableIDByName("wlan_id", $_IPS['VARIABLE'])), false);
+        UNIFI_disable_wlan(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE'])), GetValueString(IPS_GetVariableIDByName("wlan_id", $_IPS['VARIABLE'])), false);
       }
 
 ?>
