@@ -114,8 +114,8 @@
             }
             foreach ($wlanids as $nr2 => $test2)
             {
-                $exist = in_array($wlanids[$nr2], $wlan[1]);
-                echo $exist."\n";
+                $exist = in_array($wlanids[$nr2], $wlan);
+                echo $wlanids[$nr2]." ".$exist."\n";
             }
 
             foreach ($wlan as $nr => $test)
