@@ -112,9 +112,15 @@
                 $check = GetValueString($id);
                 array_push($wlanids,$check);
             }
+
+            foreach ($wlan as $nr => $test)
+            {
+                arra_push($wlanidsuc, $wlan[$nr]->_id);
+            }
+
             foreach ($wlanids as $nr2 => $test2)
             {
-                $exist = array_search($wlanids[$nr2], $wlan, true);
+                $exist = array_search($wlanids[$nr2], $wlanidsuc);
                 echo $wlanids[$nr2]." ".$exist."\n";
             }
 
