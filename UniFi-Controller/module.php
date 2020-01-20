@@ -101,8 +101,13 @@
             $wlan = $unifi_connection->list_wlanconf();
             foreach ($wlan as $nr => $test)
             {
-                $check = IPS_InstanceExists(@IPS_GetInstanceIDByName($wlan[$nr]->_id, $this->InstanceID));
-
+                $check = IPS_InstanceExists(@IPS_GetInstanceIDByName($wlan[$nr]->_id, @IPS_GetInstanceIDByName("WLAN", $this->InstanceID)));
+                if ($check == false) 
+                  {
+                    $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+                    IPS_SetName($InsID, $wlan[$nr]);
+                    IPS_SetParent($InsID, $this->InstanceID);
+                  }
                 echo $wlan[$nr]->name;
                 echo " ";
                 echo $wlan[$nr]->_id;
