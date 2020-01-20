@@ -9,7 +9,7 @@
             // Diese Zeile nicht löschen.
             parent::Create();
  
-            $this->RegisterPropertyString("url", "https://<Controller_IP>:8443");
+            $this->RegisterPropertyString("url", "https://192.168.1.7:8443");
             $this->RegisterPropertyString("username", "api_user");
             $this->RegisterPropertyString("password", "");
             $this->RegisterPropertyString("site", "default");
@@ -113,7 +113,7 @@
                     IPS_SetParent($VarID, IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
                     IPS_SetVariableCustomProfile($VarID, "~Switch");
                     SetValueBoolean($VarID, $wlan[$nr]->enabled);
-                    IPS_SetVariableCustomAction($VarID, "SetValue(\$_IPS['VARIABLE'], \$_IPS['VALUE']);");
+                    IPS_SetVariableCustomAction($VarID, IPS_GetScriptIDByFile("UNIFI_wlan-action-script.php"));
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "wlan_id");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))));
