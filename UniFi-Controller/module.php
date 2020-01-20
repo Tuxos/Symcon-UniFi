@@ -16,7 +16,6 @@
             $this->RegisterPropertyString("version", "5.12.35");
             $this->RegisterPropertyInteger("intervall", "5000");
 
-            $this->RegisterTimer('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_login_test($id);');
         }
  
         // Überschreibt die intere IPS_ApplyChanges($id) Funktion
@@ -26,7 +25,7 @@
 
             $this->RegisterVariableBoolean("online", "Online", "~Switch",1);
 
-            $this->SetTimerInterval("Update", $this->ReadPropertyInteger('intervall'));
+            $this->RegisterTimer('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_login_test($id);');
 
             if (UNIFI_login_test($this->InstanceID) == "true")
 			{
@@ -37,7 +36,7 @@
 			}
         }
  
-	    /*protected function RegisterTimer($ident, $interval, $script) {
+	    protected function RegisterTimer($ident, $interval, $script) {
 
 		    $id = @IPS_GetObjectIDByIdent($ident, $this->InstanceID);
 
@@ -64,7 +63,7 @@
 		    	IPS_SetEventCyclic($id, 0, 0, 0, 0, 1, $interval);
 		    	IPS_SetEventActive($id, true);
 		    }
-	    }*/
+	    }
 
         public function disable_wlan($wlanid, $bool) {
 
