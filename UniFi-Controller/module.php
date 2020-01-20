@@ -113,7 +113,7 @@
                     IPS_SetParent($VarID, IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
                     IPS_SetVariableCustomProfile($VarID, "~Switch");
                     SetValueBoolean($VarID, $wlan[$nr]->enabled);
-                    IPS_SetVariableCustomAction($VarID, IPS_GetScriptIDByFile(IPS_GetKernelDir()."/modules/Symcon-UniFi/UniFi-Controller/libs/UNIFI_wlan-action-script.php"));
+                    IPS_SetVariableCustomAction($VarID, IPS_GetScriptIDByFile(IPS_GetKernelDir()."modules/Symcon-UniFi/libs/UNIFI_wlan-action-script.php"));
 
                    /* copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
                     if (@IPS_GetScriptIDByName("setdisplay", $this->InstanceID) == false) {
