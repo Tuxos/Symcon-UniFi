@@ -196,6 +196,7 @@
             {
                 foreach($exist as $nr => $test)
                 {
+                    echo $exist[$nr]." exist.\n";
                     foreach ($varids as $nr2 => $test)
                     {
                         $id = IPS_GetParent(IPS_GetVariableIDByName("wlan_id", $varids[$nr2]));
