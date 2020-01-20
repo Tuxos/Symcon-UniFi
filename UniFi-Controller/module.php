@@ -121,7 +121,7 @@
 
             foreach ($wlanids as $nr2 => $test2)
             {
-                $exist = array_search($wlanids[$nr2], $wlanidsuc);
+                $exist = array_search($wlanids[$nr2], $wlanidsuc, true);
                 echo $wlanids[$nr2]." ".$exist."\n";
             }
 
