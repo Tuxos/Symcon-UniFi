@@ -104,24 +104,6 @@
 
             $wlan = $unifi_connection->list_wlanconf();
 
-            $wlanids = array();
-            $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
-            foreach ($varids as $nr => $test)
-            {
-                $id = IPS_GetVariableIDByName("wlan_id", $varids[$nr]);
-                $check = GetValueString($id);
-                array_push($wlanids,$check);
-            }
-
-            $wlanidsuc = array();
-            foreach ($wlan as $nr => $test)
-            {
-                array_push($wlanidsuc, $wlan[$nr]->_id);
-            }
-
-            $exist = array_diff($wlanids, $wlanidsuc);
-            var_dump($exist);
-
             /*foreach ($wlanidsuc as $nr2 => $test2)
             {
                 $exist = array_search($wlanidsuc[$nr2], $wlanids, true);
@@ -161,11 +143,29 @@
                     SetValueBoolean(IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))), $wlan[$nr]->enabled);
                     SetValueString(IPS_GetVariableIDByName("Passphrase", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->x_passphrase);
                   }
-
-
-                
-
             }
+
+            $wlanids = array();
+            $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
+            foreach ($varids as $nr => $test)
+            {
+                $id = IPS_GetVariableIDByName("wlan_id", $varids[$nr]);
+                $check = GetValueString($id);
+                array_push($wlanids,$check);
+            }
+      
+            $wlanidsuc = array();
+            foreach ($wlan as $nr => $test)
+            {
+                array_push($wlanidsuc, $wlan[$nr]->_id);
+            }
+      
+            $exist = array_diff($wlanids, $wlanidsuc);
+            if (empty($exist) == false) 
+            {}
+      
+            var_dump($exist);
+
 
             if ($login == "bool(true)")
             {
