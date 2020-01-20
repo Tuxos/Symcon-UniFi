@@ -119,9 +119,9 @@
                 array_push($wlanidsuc, $wlan[$nr]->_id);
             }
 
-            foreach ($wlanids as $nr2 => $test2)
+            foreach ($wlanidsuc as $nr2 => $test2)
             {
-                $exist = array_search($wlanids[$nr2], $wlanidsuc, true);
+                $exist = array_search($wlanidsuc[$nr2], $wlanids, true);
                 echo $wlanids[$nr2]." ".$exist."\n";
             }
 
