@@ -118,7 +118,7 @@
                     SetValueString($VarID, $wlan[$nr]->_id);
                   } else
                   {
-                    SetValueString(IPS_GetVariableIDByName("wlan_id", @IPS_GetInstanceIDByName("WLAN", $this->InstanceID)), $wlan[$nr]->_id);
+                    SetValueString(IPS_GetVariableIDByName("wlan_id", @IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->_id);
                   }
 
                 echo $wlan[$nr]->name;
