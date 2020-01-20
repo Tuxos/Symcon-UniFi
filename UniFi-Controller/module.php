@@ -123,6 +123,7 @@
                     SetValueBoolean(IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))), $wlan[$nr]->enabled);
                   }
 
+                  /*
                 echo $wlan[$nr]->name;
                 echo " ";
                 echo $wlan[$nr]->_id;
@@ -131,7 +132,7 @@
                 echo " ";
                 echo $wlan[$nr]->enabled ;
                 echo "<br>";
-            }
+            } */
 
             if ($login == "bool(true)")
             {
