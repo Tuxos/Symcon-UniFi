@@ -139,15 +139,11 @@
             }
 
             $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
-            var_dump($varids);
-
             foreach ($varids as $nr => $test)
             {
                 $id = IPS_GetVariableIDByName("wlan_id", $varids[$nr]);
-                //echo $id."\n";
+                echo $id."\n";
             }
-
-            var_dump($test);
 
             if ($login == "bool(true)")
             {
