@@ -112,6 +112,11 @@
                 $check = GetValueString($id);
                 array_push($wlanids,$check);
             }
+            foreach ($wlanids as $nr2 => $test2)
+            {
+                $exist = in_array($wlanids[$nr2], $wlan);
+                echo $exist."\n";
+            }
 
             foreach ($wlan as $nr => $test)
             {
@@ -147,11 +152,7 @@
                     SetValueString(IPS_GetVariableIDByName("Passphrase", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->x_passphrase);
                   }
 
-                foreach ($wlanids as $nr2 => $test2)
-                {
-                    $exist = in_array($wlanids[$nr2], $wlan[$nr]->_id);
-                    echo $exist."\n";
-                }
+
                 
 
             }
