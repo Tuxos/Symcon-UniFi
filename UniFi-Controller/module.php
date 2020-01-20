@@ -16,6 +16,10 @@
             $this->RegisterPropertyString("version", "5.12.35");
             $this->RegisterPropertyInteger("intervall", "60");
 
+            $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+            IPS_SetName($InsID, "WLAN");
+            IPS_SetParent($InsID, $this->InstanceID);
+
         }
  
         // Überschreibt die intere IPS_ApplyChanges($id) Funktion
@@ -97,6 +101,8 @@
             $wlan = $unifi_connection->list_wlanconf();
             foreach ($wlan as $nr => $test)
             {
+                $check = IPS_InstanceExists(IPS_GetInstanceIDByName($wlan[$nr]->_id, $this->InstanceID));
+
                 echo $wlan[$nr]->name;
                 echo " ";
                 echo $wlan[$nr]->_id;
