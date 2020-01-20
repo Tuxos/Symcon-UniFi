@@ -14,7 +14,7 @@
             $this->RegisterPropertyString("password", "");
             $this->RegisterPropertyString("site", "default");
             $this->RegisterPropertyString("version", "5.12.35");
-            $this->RegisterPropertyInteger("intervall", "5");
+            $this->RegisterPropertyInteger("intervall", "5000");
 
             $this->RegisterTimer('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_login_test($id);');
         }
