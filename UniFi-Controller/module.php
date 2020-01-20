@@ -138,7 +138,7 @@
                   }
             }
 
-            $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
+            $varids = IPS_GetVariableIDByName("wlan_id", IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID)));
 
             var_dump($varids);
 
