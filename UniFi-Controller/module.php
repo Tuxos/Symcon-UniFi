@@ -122,9 +122,6 @@
                     IPS_SetScriptFile($ScriptID, "UNIFI_wlan-action-script.php");
                     IPS_SetVariableCustomAction($VarID, $ScriptID);
 
-                    }
-
-
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "wlan_id");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))));
