@@ -16,7 +16,7 @@
             $this->RegisterPropertyString("version", "5.12.35");
             $this->RegisterPropertyInteger("intervall", "60");
 
-            $this->RegisterTimer('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_login_test($id);');
+            $this->RegisterTimer('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_login_test($id)');
         }
  
         // Überschreibt die intere IPS_ApplyChanges($id) Funktion
