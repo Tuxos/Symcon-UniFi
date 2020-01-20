@@ -113,6 +113,7 @@
                     IPS_SetParent($VarID, IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
                     IPS_SetVariableCustomProfile($VarID, "~Switch");
                     SetValueBoolean($VarID, $wlan[$nr]->enabled);
+                    IPS_SetVariableCustomAction($VarID, "SetValue(\$_IPS['VARIABLE'], \$_IPS['VALUE']);");
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "wlan_id");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))));
@@ -127,16 +128,6 @@
                     SetValueBoolean(IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))), $wlan[$nr]->enabled);
                     SetValueString(IPS_GetVariableIDByName("Passphrase", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->x_passphrase);
                   }
-
-                  /*
-                echo $wlan[$nr]->name;
-                echo " ";
-                echo $wlan[$nr]->_id;
-                echo " ";
-                echo $wlan[$nr]->x_passphrase ;
-                echo " ";
-                echo $wlan[$nr]->enabled ;
-                echo "<br>"; */
             } 
 
             if ($login == "bool(true)")
