@@ -144,7 +144,7 @@
                 $id = IPS_GetVariableIDByName("wlan_id", $varids[$nr]);
                 $check = GetValueString($id);
                 $ergebnis = array_search($check, $wlan);
-                var_dump($wlan);
+                //var_dump($wlan);
                 echo $ergebnis;
             }
 
