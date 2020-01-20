@@ -44,7 +44,7 @@
 			}
         }
  
-        private function DeleteObject($ObjectId) {
+        public function DeleteObject($ObjectId) {
             $Object     = IPS_GetObject($ObjectId);
             $ObjectType = $Object['ObjectType'];
             switch ($ObjectType) {
@@ -204,9 +204,9 @@
                             $children = IPS_GetChildrenIDs($id);
                             foreach ($children as $nr3 => $test)
                             {
-                                DeleteObject($children[$nr3]);
+                                UNIFI_DeleteObject($children[$nr3]);
                             }
-                            DeleteObject($id);
+                            UNIFI_DeleteObject($id);
                         }
                     }
                 }
