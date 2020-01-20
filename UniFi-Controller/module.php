@@ -144,7 +144,7 @@
             foreach ($varids as $nr => $test)
             {
                 $id = IPS_GetVariableIDByName("wlan_id", $varids[$nr]);
-                echo $id;
+                echo $id\n;
 
             }
 
