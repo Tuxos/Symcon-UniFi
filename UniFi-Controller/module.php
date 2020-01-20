@@ -27,7 +27,7 @@
 
             $this->RegisterTimerUNIFI('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_login_test($id);');
 
-            if (UNIFI_login_test($this->InstanceID) == "true")
+            if (UNIFI_readdata($this->InstanceID) == "true")
 			{
 				$this->SetStatus(102);
             } else
@@ -81,7 +81,7 @@
             // return var_dump($results);
         }
 
-        public function login_test() {
+        public function readdata() {
 
             $url = $this->ReadPropertyString("url");
             $username = $this->ReadPropertyString("username");
@@ -93,6 +93,19 @@
             $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
             $login = $unifi_connection->login();
             ob_end_clean();
+
+            $wlan = $unifi_connection->list_wlanconf();
+            foreach ($wlan as $nr => $test)
+            {
+                echo $wlan[$nr]->name;
+                echo " ";
+                echo $wlan[$nr]->_id;
+                echo " ";
+                echo $wlan[$nr]->x_passphrase ;
+                echo " ";
+                echo $wlan[$nr]->enabled ;
+                echo "<br>";
+            }
 
             if ($login == "bool(true)")
             {
