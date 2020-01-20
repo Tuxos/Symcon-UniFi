@@ -16,9 +16,13 @@
             $this->RegisterPropertyString("version", "5.12.35");
             $this->RegisterPropertyInteger("intervall", "60");
 
-            $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
-            IPS_SetName($InsID, "WLAN");
-            IPS_SetParent($InsID, $this->InstanceID);
+            $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
+            if ($check == false)
+              {
+                $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+                IPS_SetName($InsID, "WLAN");
+                IPS_SetParent($InsID, $this->InstanceID);
+              }
 
         }
  
