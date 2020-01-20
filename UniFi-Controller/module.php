@@ -144,7 +144,7 @@
                 $id = IPS_GetVariableIDByName("wlan_id", $varids[$nr]);
                 $check = GetValueString($id);
                 $ergebnis = in_array($check, $wlan, true);
-                if ($ergebnis == true) { echo "true"; } else { echo "false";}
+                if ($ergebnis == false) { echo "true"; } else { echo "false";}
             }
 
             if ($login == "bool(true)")
