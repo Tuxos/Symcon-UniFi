@@ -101,7 +101,7 @@
             $wlan = $unifi_connection->list_wlanconf();
             foreach ($wlan as $nr => $test)
             {
-                $check = IPS_InstanceExists(IPS_GetInstanceIDByName($wlan[$nr]->_id, $this->InstanceID));
+                $check = IPS_InstanceExists(@IPS_GetInstanceIDByName($wlan[$nr]->_id, $this->InstanceID));
 
                 echo $wlan[$nr]->name;
                 echo " ";
