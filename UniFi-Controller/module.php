@@ -29,9 +29,9 @@
 
             $this->RegisterVariableBoolean("online", "Online", "~Switch",1);
 
-            $this->RegisterTimerUNIFI('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_login_test($id);');
+            $this->RegisterTimerUNIFI('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_readdata($id);');
 
-            if (UNIFI_readdata($this->InstanceID) == "true")
+            if (UNIFI_login_test($this->InstanceID) == "true")
 			{
 				$this->SetStatus(102);
             } else
@@ -112,6 +112,34 @@
                 echo $wlan[$nr]->enabled ;
                 echo "<br>";
             }
+
+            if ($login == "bool(true)")
+            {
+                $result = "true";
+                $id = IPS_GetVariableIDByName ("Online", $this->InstanceID);
+                SetValueBoolean($id, true);
+            } else
+            {
+                $result = "false";
+                $id = IPS_GetVariableIDByName ("Online", $this->InstanceID);
+                SetValueBoolean($id, false);
+            }
+
+            return $result;
+        }
+
+        public function login_test() {
+
+            $url = $this->ReadPropertyString("url");
+            $username = $this->ReadPropertyString("username");
+            $password = $this->ReadPropertyString("password");
+            $site = $this->ReadPropertyString("site");
+            $version = $this->ReadPropertyString("version");
+
+            ob_start();
+            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
+            $login = $unifi_connection->login();
+            ob_end_clean();
 
             if ($login == "bool(true)")
             {
