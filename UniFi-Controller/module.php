@@ -131,8 +131,8 @@
                 echo $wlan[$nr]->x_passphrase ;
                 echo " ";
                 echo $wlan[$nr]->enabled ;
-                echo "<br>";
-            } */
+                echo "<br>"; */
+            } 
 
             if ($login == "bool(true)")
             {
