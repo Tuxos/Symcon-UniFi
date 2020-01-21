@@ -25,6 +25,15 @@
                 IPS_SetPosition($InsID, 2);
               }
 
+            $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("Clients", $this->InstanceID));
+            if ($check == false)
+              {
+                $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+                IPS_SetName($InsID, "Clients");
+                IPS_SetParent($InsID, $this->InstanceID);
+                IPS_SetPosition($InsID, 3);
+              }
+
         }
  
         // Überschreibt die intere IPS_ApplyChanges($id) Funktion
@@ -175,7 +184,7 @@
                     SetValueString($VarID, $wlan[$nr]->x_passphrase);
                     IPS_SetPosition($VarID, 1);
                     IPS_SetVariableCustomAction($VarID, $ScriptID);
-                  } else
+                  } else // update bestehende Variablen
                   {
                     SetValueString(IPS_GetVariableIDByName("wlan_id", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->_id);
                     SetValueBoolean(IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))), $wlan[$nr]->enabled);
@@ -294,6 +303,23 @@
             $login = $unifi_connection->login();
 
             $results = $unifi_connection->set_wlansettings($wlanid, $passphrase);
+
+            return $results;
+        }
+
+        // ### Liste alle online Clients auf ###
+        public function list_clients() {
+
+            $url = $this->ReadPropertyString("url");
+            $username = $this->ReadPropertyString("username");
+            $password = $this->ReadPropertyString("password");
+            $site = $this->ReadPropertyString("site");
+            $version = $this->ReadPropertyString("version");
+
+            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
+            $login = $unifi_connection->login();
+
+            $results = $unifi_connection->list_clients();
 
             return $results;
         }
