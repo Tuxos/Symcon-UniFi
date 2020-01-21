@@ -200,10 +200,11 @@
                     foreach ($varids as $nr2 => $test)
                     {
                         $id = IPS_GetParent(IPS_GetVariableIDByName("wlan_id", $varids[$nr2]));
+                        echo $id." id1 \n";
                         if ($exist[$nr] == $check) 
                         {
                             $children = IPS_GetChildrenIDs($id);
-                            echo $id." id \n";
+                            echo $id." id2 \n";
                             foreach ($children as $nr3 => $test)
                             {
                                 echo $children[$nr3]." Children \n";
