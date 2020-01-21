@@ -280,6 +280,23 @@
             return $results;
         }
 
+        // ### Ändere WLAN Passphrase ###
+        public function set_wlansettings($wlanid , $passphrase) {
+
+            $url = $this->ReadPropertyString("url");
+            $username = $this->ReadPropertyString("username");
+            $password = $this->ReadPropertyString("password");
+            $site = $this->ReadPropertyString("site");
+            $version = $this->ReadPropertyString("version");
+
+            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
+            $login = $unifi_connection->login();
+
+            $results = $unifi_connection->set_wlansettings($wlanid, $passphrase);
+
+            return $results;
+        }
+
     }
 
 ?>
