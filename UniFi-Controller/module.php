@@ -289,6 +289,13 @@
                         SetValueString($VarID, $clients[$nr]->essid);
                         IPS_SetPosition($VarID, 3);
                     }
+
+                    $VarID = IPS_CreateVariable(3);
+                    IPS_SetName($VarID, "Zuletzt gesehen");
+                    IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+                    SetValueString($VarID, Date("H:i d.m.Y", $clients[$nr]->last_seen));
+                    IPS_SetPosition($VarID, 4);
+
                   } else // update bestehende Variablen
                   {
                     //SetValueString(IPS_GetVariableIDByName("wlan_id", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->_id);
