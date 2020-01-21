@@ -260,10 +260,30 @@
                     IPS_SetParent($InstID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
 
                     $VarID = IPS_CreateVariable(3);
-                    IPS_SetName($VarID, "Name im Controller");
+                    IPS_SetName($VarID, "Name");
                     IPS_SetParent($VarID, IPS_GetInstanceIDByName($clients[$nr]->mac,(@IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                     SetValueString($VarID, $clients[$nr]->name);
                     IPS_SetPosition($VarID, 0);
+
+                    $VarID = IPS_CreateVariable(3);
+                    IPS_SetName($VarID, "IP Adresse");
+                    IPS_SetParent($VarID, IPS_GetInstanceIDByName($clients[$nr]->mac,(@IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+                    SetValueString($VarID, $clients[$nr]->ip);
+                    IPS_SetPosition($VarID, 1);
+
+                    $VarID = IPS_CreateVariable(0);
+                    IPS_SetName($VarID, "Per Kabel angebunden");
+                    IPS_SetParent($VarID, IPS_GetInstanceIDByName($clients[$nr]->mac,(@IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+                    SetValueString($VarID, $clients[$nr]->is_wired);
+                    IPS_SetPosition($VarID, 2);
+                    if ($clients[$nr]->is_wired != 1)
+                    {
+                        $VarID = IPS_CreateVariable(3);
+                        IPS_SetName($VarID, "WLAN");
+                        IPS_SetParent($VarID, IPS_GetInstanceIDByName($clients[$nr]->mac,(@IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+                        SetValueString($VarID, $clients[$nr]->essid);
+                        IPS_SetPosition($VarID, 3);
+                    }
 
                   } else // update bestehende Variablen
                   {
