@@ -267,7 +267,7 @@
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, $clients[$nr]->mac);
                     IPS_SetParent($VarID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
-                    SetValueString($VarID, $clients[$nr]->name);
+                    SetValueString($VarID, $clients[$nr]->mac);
                     IPS_SetPosition($VarID, 0);
 
                     $VarID = IPS_CreateVariable(3);
