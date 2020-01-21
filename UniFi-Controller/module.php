@@ -196,14 +196,10 @@
             {
                 foreach($exist as $nr => $test)
                 {
-                    echo $exist[$nr]." exist.\n";
                     foreach ($varids as $nr2 => $test)
                     {
                         $id = IPS_GetParent(IPS_GetVariableIDByName("wlan_id", $varids[$nr2]));
                         $idchild = GetValueString(IPS_GetVariableIDByName("wlan_id", $id));
-                        echo $id." id1 ";
-                        echo $exist[$nr]." exist[nr] ";
-                        echo $varids[$nr2]." varid[nr2] \n";
                         if ($exist[$nr] == $idchild)                      
                         {
                             $children = IPS_GetChildrenIDs($id);
@@ -213,6 +209,7 @@
                                 echo $children[$nr3]." delete Children \n";
                                 //UNIFI_DeleteObject($children[$nr3]);
                             }
+                            echo "Delete ".$id;
                             //UNIFI_DeleteObject($id);
                         }
                     }
