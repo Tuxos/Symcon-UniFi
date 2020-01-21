@@ -44,6 +44,7 @@
 			}
         }
  
+        // ### Lösche beliebige Objekte mit $ObejctId ###
         public function DeleteObject($ObjectId) {
             $Object     = IPS_GetObject($ObjectId);
             $ObjectType = $Object['ObjectType'];
@@ -75,6 +76,7 @@
           }
         } 
 
+        // ### Erstelle zyklischen Timer ###
 	    protected function RegisterTimerUNIFI($ident, $interval, $script) {
 
 		    $id = @IPS_GetObjectIDByIdent($ident, $this->InstanceID);
@@ -104,6 +106,7 @@
 		    }
 	    }
 
+        // ### Aktiviere/Deaktiviere WLAN ###
         public function disable_wlan($wlanid, $bool) {
 
             $url = $this->ReadPropertyString("url");
@@ -117,9 +120,9 @@
 
             $results = $unifi_connection->disable_wlan($wlanid, $bool);
 
-            // return var_dump($results);
         }
 
+        // ### Auslesen der Grundkonfiguration für WLAN und ob API Zugriff möglich. Wird zyklisch aufgerufen. ###
         public function readdata() {
 
             $url = $this->ReadPropertyString("url");
@@ -135,12 +138,7 @@
 
             $wlan = $unifi_connection->list_wlanconf();
 
-            /*foreach ($wlanidsuc as $nr2 => $test2)
-            {
-                $exist = array_search($wlanidsuc[$nr2], $wlanids, true);
-                echo $wlanids[$nr2]." ".$exist."\n";
-            }*/
-
+            // ### Erstelle (falls noch nicht vorhanden) die WLANs in IPSymcon. Falls schon vorhanden aktualisiere sie. ###
             foreach ($wlan as $nr => $test)
             {
                 $check = IPS_VariableExists(@IPS_GetVariableIDByName($wlan[$nr]->name, @IPS_GetInstanceIDByName("WLAN", $this->InstanceID)));
@@ -176,6 +174,7 @@
                   }
             }
 
+            // ### Lösche im Controller nicht mehr vorhandene WLANs ###
             $wlanids = array();
             $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
             foreach ($varids as $nr => $test)
@@ -183,14 +182,12 @@
                 $id = IPS_GetVariableIDByName("wlan_id", $varids[$nr]);
                 $check = GetValueString($id);
                 array_push($wlanids,$check);
-            }
-      
+            } 
             $wlanidsuc = array();
             foreach ($wlan as $nr => $test)
             {
                 array_push($wlanidsuc, $wlan[$nr]->_id);
             }
-      
             $exist = array_diff($wlanids, $wlanidsuc);
             if (empty($exist) == false) 
             {
@@ -205,19 +202,15 @@
                             $children = IPS_GetChildrenIDs($id);
                             foreach ($children as $nr3 => $test)
                             {
-                                //echo $children[$nr3]." delete Children \n";
                                 UNIFI_DeleteObject($this->InstanceID, $children[$nr3]);
                             }
-                            //echo "Delete ".$id;
                             UNIFI_DeleteObject($this->InstanceID, $id);
                         }
                     }
                 }
             }
-      
-            // var_dump($exist);
 
-
+            // ### Login möglich oder nicht möglich - return Ausgabe der Funktion###
             if ($login == "bool(true)")
             {
                 $result = "true";
@@ -233,6 +226,7 @@
             return $result;
         }
 
+        // ### Prüfe ob Login möglich ###
         public function login_test() {
 
             $url = $this->ReadPropertyString("url");
@@ -261,6 +255,7 @@
             return $result;
         }
 
+        // ### Liste WLAN Konfiguration auf ###
         public function list_wlanconf() {
 
             $url = $this->ReadPropertyString("url");
