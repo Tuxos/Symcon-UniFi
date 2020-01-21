@@ -274,7 +274,7 @@
                     $VarID = IPS_CreateVariable(0);
                     IPS_SetName($VarID, "Per Kabel angebunden");
                     IPS_SetParent($VarID, IPS_GetInstanceIDByName($clients[$nr]->mac,(@IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-                    SetValueString($VarID, $clients[$nr]->is_wired);
+                    SetValueBoolean($VarID, $clients[$nr]->is_wired);
                     IPS_SetPosition($VarID, 2);
                     if ($clients[$nr]->is_wired != 1)
                     {
