@@ -10,7 +10,7 @@
     ],
     "actions":
     [
-        { "type": "Button", "label": "Verify login", "onClick": "UNIFI_login_test($id);" }
+        { "type": "Button", "label": "Einlesen der Konfiguration", "onClick": "UNIFI_readdata($id);" }
     ],
     "status":
     [
