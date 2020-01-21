@@ -200,7 +200,7 @@
                     foreach ($varids as $nr2 => $test)
                     {
                         $id = IPS_GetParent(IPS_GetVariableIDByName("wlan_id", $varids[$nr2]));
-                        $idchild = GetValueString(IPS_GetVariableIDByName("wlan_id", $id));
+                        $idchild = GetValueString($id);
                         echo $id." id1 ";
                         echo $exist[$nr]." exist[nr] ";
                         echo $varids[$nr2]." varid[nr2] \n";
@@ -210,7 +210,7 @@
                             echo $id." id2 \n";
                             foreach ($children as $nr3 => $test)
                             {
-                                echo $children[$nr3]." Children \n";
+                                echo $children[$nr3]." delete Children \n";
                                 //UNIFI_DeleteObject($children[$nr3]);
                             }
                             //UNIFI_DeleteObject($id);
