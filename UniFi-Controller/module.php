@@ -275,6 +275,7 @@
                     IPS_SetName($VarID, "Per Kabel angebunden");
                     IPS_SetParent($VarID, IPS_GetInstanceIDByName($clients[$nr]->mac,(@IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                     SetValueBoolean($VarID, $clients[$nr]->is_wired);
+                    IPS_SetVariableCustomProfile($VarID, "~Switch");
                     IPS_SetPosition($VarID, 2);
                     if ($clients[$nr]->is_wired != 1)
                     {
