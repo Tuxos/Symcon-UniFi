@@ -257,7 +257,7 @@
                   {
                     $InstID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
                     IPS_SetName($InstID, $clients[$nr]->mac);
-                    IPS_SetParent($VarID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
+                    IPS_SetParent($InstID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
 
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "Name im Controller");
