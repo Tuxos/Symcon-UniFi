@@ -305,7 +305,7 @@
 
                   } else // update bestehende Variablen
                   {
-                    SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), $clients[$nr]->name);
+                    if (empty($clients[$nr]->name) == false) { SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), $clients[$nr]->name); } else { SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), "Kein Wert gesetzt"); }
                     SetValueString(IPS_GetVariableIDByName("IP Adresse",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->ip);
                     SetValueBoolean(IPS_GetVariableIDByName("Anbindung",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->is_wired);
                     if ($clients[$nr]->is_wired != 1)
