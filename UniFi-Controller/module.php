@@ -22,6 +22,7 @@
                 $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
                 IPS_SetName($InsID, "WLAN");
                 IPS_SetParent($InsID, $this->InstanceID);
+                IPS_SetPosition($InsID, 2);
               }
 
         }
@@ -33,8 +34,10 @@
 
             $this->RegisterVariableBoolean("online", "Online", "~Switch",1);
 
-            $this->RegisterTimerUNIFI('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_readdata($id);');
+            $id = $this->RegisterTimerUNIFI('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_readdata($id);');
+            IPS_SetPosition($id, 9);
 
+            // setze Status in der Instanzkonfiguration
             if (UNIFI_login_test($this->InstanceID) == "true")
 			{
 				$this->SetStatus(102);
@@ -103,7 +106,8 @@
 		    } else {
 		    	IPS_SetEventCyclic($id, 0, 0, 0, 0, 1, $interval);
 		    	IPS_SetEventActive($id, true);
-		    }
+            }
+            return $id;
 	    }
 
         // ### Aktiviere/Deaktiviere WLAN ###
@@ -138,7 +142,7 @@
 
             $wlan = $unifi_connection->list_wlanconf();
 
-            // ### Erstelle (falls noch nicht vorhanden) die WLANs in IPSymcon. Falls schon vorhanden aktualisiere sie. ###
+            // Erstelle (falls noch nicht vorhanden) die WLANs in IPSymcon. Falls schon vorhanden aktualisiere sie.
             foreach ($wlan as $nr => $test)
             {
                 $check = IPS_VariableExists(@IPS_GetVariableIDByName($wlan[$nr]->name, @IPS_GetInstanceIDByName("WLAN", $this->InstanceID)));
@@ -156,16 +160,19 @@
                     IPS_SetName($ScriptID, "wlan-action-script");
                     IPS_SetHidden($ScriptID, true);
                     IPS_SetScriptFile($ScriptID, "UNIFI_wlan-action-script.php");
-                    IPS_SetVariableCustomAction($VarID, $ScriptID);
+                    IPS_SetVariableCustomAction($VarID, $ScriptID);                    
+                    IPS_SetPosition($ScriptID, 2);
 
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "wlan_id");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))));
                     SetValueString($VarID, $wlan[$nr]->_id);
+                    IPS_SetPosition($VarID, 0);
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "Passphrase");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))));
                     SetValueString($VarID, $wlan[$nr]->x_passphrase);
+                    IPS_SetPosition($VarID, 1);
                   } else
                   {
                     SetValueString(IPS_GetVariableIDByName("wlan_id", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->_id);
@@ -174,7 +181,7 @@
                   }
             }
 
-            // ### Lösche im Controller nicht mehr vorhandene WLANs ###
+            // Lösche im Controller nicht mehr vorhandene WLANs
             $wlanids = array();
             $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
             foreach ($varids as $nr => $test)
@@ -210,7 +217,7 @@
                 }
             }
 
-            // ### Login möglich oder nicht möglich - return Ausgabe der Funktion###
+            // Login möglich oder nicht möglich - return Ausgabe der Funktion
             if ($login == "bool(true)")
             {
                 $result = "true";
@@ -271,7 +278,6 @@
 
             return $results;
         }
-
 
     }
 
