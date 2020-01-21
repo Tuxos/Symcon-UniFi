@@ -17,6 +17,6 @@
     
     If ($VarInf['VariableType'] == 3)
       {
-        UNIFI_set_wlansettings(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE'])), GetValueString(IPS_GetVariableIDByName("wlan_id", $_IPS['VARIABLE'])), $_IPS['VALUE']);
+        UNIFI_set_wlansettings(IPS_GetParent(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE']))), GetValueString(IPS_GetVariableIDByName("wlan_id", IPS_GetParent($_IPS['VARIABLE']))), $_IPS['VALUE']);
       }
 ?>
