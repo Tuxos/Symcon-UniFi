@@ -206,10 +206,10 @@
                             foreach ($children as $nr3 => $test)
                             {
                                 //echo $children[$nr3]." delete Children \n";
-                                UNIFI_DeleteObject($children[$nr3]);
+                                UNIFI_DeleteObject($this->InstanceID, $children[$nr3]);
                             }
                             //echo "Delete ".$id;
-                            UNIFI_DeleteObject($id);
+                            UNIFI_DeleteObject($this->InstanceID, $id);
                         }
                     }
                 }
