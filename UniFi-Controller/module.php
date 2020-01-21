@@ -200,7 +200,9 @@
                     foreach ($varids as $nr2 => $test)
                     {
                         $id = IPS_GetParent(IPS_GetVariableIDByName("wlan_id", $varids[$nr2]));
-                        echo $id." id1 \n";
+                        echo $id." id1 ";
+                        echo $exist[$nr]." exist[nr] ";
+                        echo $check." check \n";
                         if ($exist[$nr] == $check) 
                         {
                             $children = IPS_GetChildrenIDs($id);
@@ -208,15 +210,15 @@
                             foreach ($children as $nr3 => $test)
                             {
                                 echo $children[$nr3]." Children \n";
-                                UNIFI_DeleteObject($children[$nr3]);
+                                //UNIFI_DeleteObject($children[$nr3]);
                             }
-                            UNIFI_DeleteObject($id);
+                            //UNIFI_DeleteObject($id);
                         }
                     }
                 }
             }
       
-            var_dump($exist);
+            // var_dump($exist);
 
 
             if ($login == "bool(true)")
