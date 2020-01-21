@@ -203,14 +203,13 @@
                         if ($exist[$nr] == $idchild)                      
                         {
                             $children = IPS_GetChildrenIDs($id);
-                            echo $id." id2 \n";
                             foreach ($children as $nr3 => $test)
                             {
-                                echo $children[$nr3]." delete Children \n";
-                                //UNIFI_DeleteObject($children[$nr3]);
+                                //echo $children[$nr3]." delete Children \n";
+                                UNIFI_DeleteObject($children[$nr3]);
                             }
-                            echo "Delete ".$id;
-                            //UNIFI_DeleteObject($id);
+                            //echo "Delete ".$id;
+                            UNIFI_DeleteObject($id);
                         }
                     }
                 }
