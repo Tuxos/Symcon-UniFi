@@ -293,14 +293,27 @@
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "Zuletzt gesehen");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-                    SetValueString($VarID, Date("H:i d.m.Y", $clients[$nr]->last_seen));
+                    SetValueString($VarID, Date("H:i - d.m.Y", $clients[$nr]->last_seen));
                     IPS_SetPosition($VarID, 4);
+
+                    $VarID = IPS_CreateVariable(0);
+                    IPS_SetName($VarID, "Online");
+                    IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+                    SetValueBoolean($VarID, true);
+                    //IPS_SetVariableCustomProfile($VarID, "UNIFI.Kabel");
+                    IPS_SetPosition($VarID, 5);
 
                   } else // update bestehende Variablen
                   {
-                    //SetValueString(IPS_GetVariableIDByName("wlan_id", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->_id);
-                    //SetValueBoolean(IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))), $wlan[$nr]->enabled);
-                    //SetValueString(IPS_GetVariableIDByName("Passphrase", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->x_passphrase);
+                    SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), $clients[$nr]->name);
+                    SetValueString(IPS_GetVariableIDByName("IP Adresse",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->ip);
+                    SetValueBoolean(IPS_GetVariableIDByName("Anbindung",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->is_wired);
+                    if ($clients[$nr]->is_wired != 1)
+                    {
+                        SetValueString(IPS_GetVariableIDByName("WLAN",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->essid);
+                    }
+                    SetValueString(IPS_GetVariableIDByName("Zuletzt gesehen",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), Date("H:i - d.m.Y", $clients[$nr]->last_seen));
+                    SetValueBoolean(IPS_GetVariableIDByName("Online",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), true);
                   }
             }
 
