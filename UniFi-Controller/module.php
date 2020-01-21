@@ -38,8 +38,8 @@
             if ($check == false)
             {
                 IPS_CreateVariableProfile("UNIFI.Kabel", 0);
-                IPS_SetVariableProfileAssociation("UNIFI.Kabel", false, "WLAN", "", "");
-                IPS_SetVariableProfileAssociation("UNIFI.Kabel", true, "Kabel", "", "");
+                IPS_SetVariableProfileAssociation("UNIFI.Kabel", false, "WLAN", "", -1);
+                IPS_SetVariableProfileAssociation("UNIFI.Kabel", true, "Kabel", "", -1);
             }
 
         }
@@ -260,7 +260,7 @@
             // Erstelle (falls noch nicht vorhanden) die WLANs in IPSymcon. Falls schon vorhanden aktualisiere sie.
             foreach ($clients as $nr => $test)
             {
-                $check = IPS_InstanceExists(@IPS_GetVariableIDByName($clients[$nr]->mac, @IPS_GetInstanceIDByName("Clients", $this->InstanceID)));
+                $check = IPS_VariableExists(@IPS_GetVariableIDByName($clients[$nr]->mac, @IPS_GetInstanceIDByName("Clients", $this->InstanceID)));
                 if ($check == false) 
                   {
 
