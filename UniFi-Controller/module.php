@@ -42,6 +42,14 @@
                 IPS_SetVariableProfileAssociation("UNIFI.Kabel", true, "Kabel", "", -1);
             }
 
+            $check = IPS_VariableProfileExists("UNIFI.Online");
+            if ($check == false)
+            {
+                IPS_CreateVariableProfile("UNIFI.Online", 0);
+                IPS_SetVariableProfileAssociation("UNIFI.Online", false, "Offline", "", 16711680);
+                IPS_SetVariableProfileAssociation("UNIFI.Online", true, "Online", "", 65280);
+            }
+
         }
  
         // Überschreibt die intere IPS_ApplyChanges($id) Funktion
@@ -290,18 +298,12 @@
                         IPS_SetPosition($VarID, 3);
                     }
 
-                    $VarID = IPS_CreateVariable(3);
-                    IPS_SetName($VarID, "Zuletzt gesehen");
-                    IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-                    SetValueString($VarID, Date("H:i - d.m.Y", $clients[$nr]->last_seen));
-                    IPS_SetPosition($VarID, 4);
-
                     $VarID = IPS_CreateVariable(0);
                     IPS_SetName($VarID, "Online");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                     SetValueBoolean($VarID, true);
-                    //IPS_SetVariableCustomProfile($VarID, "UNIFI.Kabel");
-                    IPS_SetPosition($VarID, 5);
+                    IPS_SetVariableCustomProfile($VarID, "UNIFI.Online");
+                    IPS_SetPosition($VarID, 4);
 
                   } else // update bestehende Variablen
                   {
@@ -312,7 +314,6 @@
                     {
                         SetValueString(IPS_GetVariableIDByName("WLAN",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->essid);
                     }
-                    SetValueString(IPS_GetVariableIDByName("Zuletzt gesehen",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), Date("H:i - d.m.Y", $clients[$nr]->last_seen));
                     SetValueBoolean(IPS_GetVariableIDByName("Online",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), true);
                   }
             }
