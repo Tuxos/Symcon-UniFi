@@ -244,6 +244,38 @@
             return $result;
         }
 
+        // ### Erstelle/Update/Lösche Einträge aus Client Liste ###
+        public function readdata_clients() {
+
+            $clients = UNIFI_list_clients($this->InstanceID);
+
+            // Erstelle (falls noch nicht vorhanden) die WLANs in IPSymcon. Falls schon vorhanden aktualisiere sie.
+            foreach ($clients as $nr => $test)
+            {
+                $check = IPS_InstanceExists(@IPS_GetInstanceIDByName($clients[$nr]->mac, @IPS_GetInstanceIDByName("Clients", $this->InstanceID)));
+                if ($check == false) 
+                  {
+                    $InstID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+                    IPS_SetName($InstID, $clients[$nr]->mac);
+                    IPS_SetParent($VarID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
+
+                    $VarID = IPS_CreateVariable(3);
+                    IPS_SetName($VarID, "Name im Controller");
+                    IPS_SetParent($VarID, IPS_GetInstanceIDByName($clients[$nr]->mac,(@IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+                    SetValueString($VarID, $clients[$nr]->name);
+                    IPS_SetPosition($VarID, 0);
+
+                  } else // update bestehende Variablen
+                  {
+                    //SetValueString(IPS_GetVariableIDByName("wlan_id", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->_id);
+                    //SetValueBoolean(IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))), $wlan[$nr]->enabled);
+                    //SetValueString(IPS_GetVariableIDByName("Passphrase", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->x_passphrase);
+                  }
+            }
+
+        }
+
+
         // ### Prüfe ob Login möglich ###
         public function login_test() {
 
