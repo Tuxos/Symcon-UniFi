@@ -174,6 +174,7 @@
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))));
                     SetValueString($VarID, $wlan[$nr]->x_passphrase);
                     IPS_SetPosition($VarID, 1);
+                    IPS_SetVariableCustomAction($VarID, $ScriptID);
                   } else
                   {
                     SetValueString(IPS_GetVariableIDByName("wlan_id", IPS_GetVariableIDByName($wlan[$nr]->name,(IPS_GetInstanceIDByName("WLAN", $this->InstanceID)))), $wlan[$nr]->_id);
