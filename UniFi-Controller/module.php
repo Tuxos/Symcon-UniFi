@@ -100,7 +100,7 @@
                 IPS_DeleteLink($ObjectId);
                 break;
             default:
-            Error ("Found unknown ObjectType $ObjectType");
+            Error ("Found unknown ObjectType $ObjectType. Cannot delete.");
           }
         } 
 
@@ -265,7 +265,15 @@
 
             $clients = UNIFI_list_clients($this->InstanceID);
 
-            // Erstelle (falls noch nicht vorhanden) die WLANs in IPSymcon. Falls schon vorhanden aktualisiere sie.
+            // Lösche alle Clients
+            
+            $allclients = IPS_GetChildrenIDs(@IPS_GetObjectIDByName("Clients", $this->InstanceID));
+            foreach ($allclients as $count => $test)
+                            {
+                              DeleteObject($allclients[$count]);
+                            }
+
+            // Erstelle (falls noch nicht vorhanden) die Clients in IPSymcon. Falls schon vorhanden aktualisiere sie.
             foreach ($clients as $nr => $test)
             {
                 $check = IPS_VariableExists(@IPS_GetVariableIDByName($clients[$nr]->mac, @IPS_GetInstanceIDByName("Clients", $this->InstanceID)));
