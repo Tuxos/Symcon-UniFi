@@ -290,7 +290,7 @@
                $VarID = IPS_CreateVariable(3);
                IPS_SetName($VarID, "IP Adresse");
                IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-               SetValueString($VarID, $clients[$nr]->ip);
+               if (empty($clients[$nr]->ip) == false) SetValueString($VarID, $clients[$nr]->ip);
                IPS_SetPosition($VarID, 1);
 
                $VarID = IPS_CreateVariable(0);
