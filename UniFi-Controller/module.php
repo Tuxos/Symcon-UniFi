@@ -297,7 +297,7 @@
 
                $VarID = IPS_CreateVariable(0);
                IPS_SetName($VarID, "Anbindung");
-               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                SetValueBoolean($VarID, $clients[$nr]->is_wired);
                IPS_SetVariableCustomProfile($VarID, "UNIFI.Kabel");
                IPS_SetPosition($VarID, 2);
@@ -305,14 +305,14 @@
                {
                   $VarID = IPS_CreateVariable(3);
                   IPS_SetName($VarID, "WLAN");
-                  IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+                  IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                   SetValueString($VarID, $clients[$nr]->essid);
                   IPS_SetPosition($VarID, 3);
                }
 
                $VarID = IPS_CreateVariable(0);
                IPS_SetName($VarID, "Online");
-               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                SetValueBoolean($VarID, true);
                IPS_SetVariableCustomProfile($VarID, "UNIFI.Online");
                IPS_SetPosition($VarID, 4);
