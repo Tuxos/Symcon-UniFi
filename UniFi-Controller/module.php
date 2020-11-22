@@ -273,9 +273,9 @@
                               $clientchilds = IPS_GetChildrenIDs($allclients[$count]);
                               foreach ($clientchilds as $count2 => $test2)
                               {
-                                IPS_DeleteVariable($clientchilds[$count2]);
+                                UNIFI_DeleteObject($this->InstanceID, $clientchilds[$count2]);
                               }
-                              IPS_DeleteVariable($allclients[$count]);
+                              UNIFI_DeleteObject($this->InstanceID, $allclients[$count]);
                             }
 
             // Erstelle die Clients in IPSymcon.
