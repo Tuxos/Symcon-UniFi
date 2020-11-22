@@ -33,6 +33,12 @@
                 IPS_SetParent($InsID, $this->InstanceID);
                 IPS_SetPosition($InsID, 3);
               }
+              
+            $check = IPS_VariableProfileExists("UNIFI.IP");
+            if ($check == false)
+            {
+                IPS_CreateVariableProfile("UNIFI.IP", 3);
+            }
             
             $check = IPS_VariableProfileExists("UNIFI.Kabel");
             if ($check == false)
