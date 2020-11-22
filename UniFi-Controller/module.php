@@ -281,16 +281,18 @@
             // Erstelle die Clients in IPSymcon.
             foreach ($clients as $nr => $test)
             {
+             if (empty($clients[$nr]->ip) == false)
+             {
                $VarID = IPS_CreateVariable(3);
-               IPS_SetName($VarID, $clients[$nr]->mac);
+               IPS_SetName($VarID, $clients[$nr]->ip);
                IPS_SetParent($VarID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
                if (empty($clients[$nr]->name) == false) { SetValueString($VarID, $clients[$nr]->name); } else { if (empty($clients[$nr]->hostname) == false) { SetValueString($VarID, $clients[$nr]->hostname); } else { SetValueString($VarID, "Kein Wert gesetzt"); } }
                IPS_SetPosition($VarID, 0);
 
                $VarID = IPS_CreateVariable(3);
-               IPS_SetName($VarID, "IP Adresse");
-               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-               if (empty($clients[$nr]->ip) == false) SetValueString($VarID, $clients[$nr]->ip);
+               IPS_SetName($VarID, "Mac Adresse");
+               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+               SetValueString($VarID, $clients[$nr]->mac);
                IPS_SetPosition($VarID, 1);
 
                $VarID = IPS_CreateVariable(0);
@@ -314,6 +316,7 @@
                SetValueBoolean($VarID, true);
                IPS_SetVariableCustomProfile($VarID, "UNIFI.Online");
                IPS_SetPosition($VarID, 4);
+             }
             }
 
         }
