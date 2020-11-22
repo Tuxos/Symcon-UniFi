@@ -314,8 +314,13 @@
                     {
                         SetValueString(IPS_GetVariableIDByName("WLAN",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->essid);
                     }
-                    if (empty($clients[$nr]->ip) == false { SetValueBoolean(IPS_GetVariableIDByName("Online",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), true); } else { SetValueBoolean(IPS_GetVariableIDByName("Online",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), false); }
-                  }
+                    if (empty($clients[$nr]->ip) == false) {
+                    SetValueBoolean(IPS_GetVariableIDByName("Online",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), true);
+                    } else 
+                    { 
+                    SetValueBoolean(IPS_GetVariableIDByName("Online",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), false);
+                    }
+                   }
             }
 
         }
