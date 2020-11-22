@@ -88,7 +88,7 @@
                 IPS_DeleteVariable($ObjectId);
                 break;
             case 3: // Script
-                IPS_DeleteScript($ObjectId, false);
+                IPS_DeleteScript($ObjectId, true);
                 break;
             case 4: // Event
                 IPS_DeleteEvent($ObjectId);
@@ -278,57 +278,42 @@
                               IPS_DeleteVariable($allclients[$count]);
                             }
 
-            // Erstelle (falls noch nicht vorhanden) die Clients in IPSymcon. Falls schon vorhanden aktualisiere sie.
+            // Erstelle die Clients in IPSymcon.
             foreach ($clients as $nr => $test)
             {
-                $check = IPS_VariableExists(@IPS_GetVariableIDByName($clients[$nr]->mac, @IPS_GetInstanceIDByName("Clients", $this->InstanceID)));
-                if ($check == false) 
-                  {
-                    $VarID = IPS_CreateVariable(3);
-                    IPS_SetName($VarID, $clients[$nr]->mac);
-                    IPS_SetParent($VarID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
-                    if (empty($clients[$nr]->name) == false) { SetValueString($VarID, $clients[$nr]->name); } else { if (empty($clients[$nr]->hostname) == false) { SetValueString($VarID, $clients[$nr]->hostname); } else { SetValueString($VarID, "Kein Wert gesetzt"); } }
-                    IPS_SetPosition($VarID, 0);
+               $VarID = IPS_CreateVariable(3);
+               IPS_SetName($VarID, $clients[$nr]->mac);
+               IPS_SetParent($VarID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
+               if (empty($clients[$nr]->name) == false) { SetValueString($VarID, $clients[$nr]->name); } else { if (empty($clients[$nr]->hostname) == false) { SetValueString($VarID, $clients[$nr]->hostname); } else { SetValueString($VarID, "Kein Wert gesetzt"); } }
+               IPS_SetPosition($VarID, 0);
 
-                    $VarID = IPS_CreateVariable(3);
-                    IPS_SetName($VarID, "IP Adresse");
-                    IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-                    SetValueString($VarID, $clients[$nr]->ip);
-                    IPS_SetPosition($VarID, 1);
+               $VarID = IPS_CreateVariable(3);
+               IPS_SetName($VarID, "IP Adresse");
+               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+               SetValueString($VarID, $clients[$nr]->ip);
+               IPS_SetPosition($VarID, 1);
 
-                    $VarID = IPS_CreateVariable(0);
-                    IPS_SetName($VarID, "Anbindung");
-                    IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-                    SetValueBoolean($VarID, $clients[$nr]->is_wired);
-                    IPS_SetVariableCustomProfile($VarID, "UNIFI.Kabel");
-                    IPS_SetPosition($VarID, 2);
-                    if ($clients[$nr]->is_wired != 1)
-                    {
-                        $VarID = IPS_CreateVariable(3);
-                        IPS_SetName($VarID, "WLAN");
-                        IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-                        SetValueString($VarID, $clients[$nr]->essid);
-                        IPS_SetPosition($VarID, 3);
-                    }
+               $VarID = IPS_CreateVariable(0);
+               IPS_SetName($VarID, "Anbindung");
+               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+               SetValueBoolean($VarID, $clients[$nr]->is_wired);
+               IPS_SetVariableCustomProfile($VarID, "UNIFI.Kabel");
+               IPS_SetPosition($VarID, 2);
+               if ($clients[$nr]->is_wired != 1)
+               {
+                  $VarID = IPS_CreateVariable(3);
+                  IPS_SetName($VarID, "WLAN");
+                  IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+                  SetValueString($VarID, $clients[$nr]->essid);
+                  IPS_SetPosition($VarID, 3);
+               }
 
-                    $VarID = IPS_CreateVariable(0);
-                    IPS_SetName($VarID, "Online");
-                    IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-                    SetValueBoolean($VarID, true);
-                    IPS_SetVariableCustomProfile($VarID, "UNIFI.Online");
-                    IPS_SetPosition($VarID, 4);
-
-                  } else // update bestehende Variablen
-                  {
-                    if (empty($clients[$nr]->name) == false) { SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), $clients[$nr]->name); } else { if (empty($clients[$nr]->hostname) == false) { SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), $clients[$nr]->hostname); } else { SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), "Kein Wert gesetzt"); } }                   
-                    SetValueString(IPS_GetVariableIDByName("IP Adresse",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->ip);
-                    SetValueBoolean(IPS_GetVariableIDByName("Anbindung",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->is_wired);
-                    if ($clients[$nr]->is_wired != 1)
-                    {
-                        SetValueString(IPS_GetVariableIDByName("WLAN",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->essid);
-                    }
-                    SetValueBoolean(IPS_GetVariableIDByName("Online",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), true);
-                  }
+               $VarID = IPS_CreateVariable(0);
+               IPS_SetName($VarID, "Online");
+               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
+               SetValueBoolean($VarID, true);
+               IPS_SetVariableCustomProfile($VarID, "UNIFI.Online");
+               IPS_SetPosition($VarID, 4);
             }
 
         }
