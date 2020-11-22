@@ -270,6 +270,11 @@
             $allclients = IPS_GetChildrenIDs(@IPS_GetObjectIDByName("Clients", $this->InstanceID));
             foreach ($allclients as $count => $test)
                             {
+                              $clientchilds = IPS_GetChildrenIDs($allclients[$count]);
+                              foreach ($clientchilds as $count2 => $test2)
+                              {
+                                UNIFI_DeleteObject($clientchilds[$count2]);
+                              }
                               UNIFI_DeleteObject($allclients[$count]);
                             }
 
