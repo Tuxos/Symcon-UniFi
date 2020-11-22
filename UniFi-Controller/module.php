@@ -315,7 +315,7 @@
                $VarID = IPS_CreateVariable(3);
                IPS_SetName($VarID, "Zuletzt gesehen");
                IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-               $lastseen = date("d.m.y-H:i", $clients[$nr]->last_seen);
+               $lastseen = date("H:i:s", $clients[$nr]->last_seen);
                SetValueString($VarID, $lastseen);
                IPS_SetPosition($VarID, 4);
              }
