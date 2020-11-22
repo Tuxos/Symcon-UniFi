@@ -260,7 +260,7 @@
             return $result;
         }
 
-        // ### Erstelle/Update/Lösche Einträge aus Client Liste ###
+        // ### Erstelle/Lösche Einträge in der Client Liste ###
         public function readdata_clients() {
 
             $clients = UNIFI_list_clients($this->InstanceID);
@@ -312,11 +312,11 @@
                   IPS_SetPosition($VarID, 3);
                }
 
-               $VarID = IPS_CreateVariable(0);
-               IPS_SetName($VarID, "Online");
+               $VarID = IPS_CreateVariable(3);
+               IPS_SetName($VarID, "Zuletzt online");
                IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
-               SetValueBoolean($VarID, true);
-               IPS_SetVariableCustomProfile($VarID, "UNIFI.Online");
+               $lastseen = date("m.d.y - H:i:s", $clients[$nr]->last_seen);
+               SetValueString($VarID, $lastseen);
                IPS_SetPosition($VarID, 4);
              }
             }
