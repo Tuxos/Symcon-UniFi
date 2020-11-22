@@ -270,7 +270,7 @@
             $allclients = IPS_GetChildrenIDs(@IPS_GetObjectIDByName("Clients", $this->InstanceID));
             foreach ($allclients as $count => $test)
                             {
-                              DeleteObject($allclients[$count]);
+                              UNIFI_DeleteObject($allclients[$count]);
                             }
 
             // Erstelle (falls noch nicht vorhanden) die Clients in IPSymcon. Falls schon vorhanden aktualisiere sie.
