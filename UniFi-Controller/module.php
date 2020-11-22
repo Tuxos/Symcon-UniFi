@@ -287,10 +287,11 @@
                IPS_SetName($VarID, $clients[$nr]->ip);
                IPS_SetParent($VarID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
                if (empty($clients[$nr]->name) == false) { SetValueString($VarID, $clients[$nr]->name); } else { if (empty($clients[$nr]->hostname) == false) { SetValueString($VarID, $clients[$nr]->hostname); } else { SetValueString($VarID, "Kein Wert gesetzt"); } }
-               IPS_SetPosition($VarID, 0);
+               $sort = explode(".", $clients[$nr]->ip);
+               IPS_SetPosition($VarID, $sort[3]);
 
                $VarID = IPS_CreateVariable(3);
-               IPS_SetName($VarID, "Mac Adresse");
+               IPS_SetName($VarID, "MAC Adresse");
                IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                SetValueString($VarID, $clients[$nr]->mac);
                IPS_SetPosition($VarID, 1);
