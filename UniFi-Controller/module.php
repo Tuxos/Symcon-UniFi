@@ -275,7 +275,7 @@
                               {
                                 IPS_DeleteVariable($clientchilds[$count2]);
                               }
-                              UNIFI_DeleteObject($allclients[$count]);
+                              IPS_DeleteVariable($allclients[$count]);
                             }
 
             // Erstelle (falls noch nicht vorhanden) die Clients in IPSymcon. Falls schon vorhanden aktualisiere sie.
