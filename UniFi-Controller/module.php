@@ -316,7 +316,7 @@
                     if (empty($clients[$nr]->name) == false) { SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), $clients[$nr]->name); } else { if (empty($clients[$nr]->hostname) == false) { SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), $clients[$nr]->hostname); } else { SetValueString(IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))), "Kein Wert gesetzt"); } }
                     
                     // Test
-                    IPS_SetVariableCustomProfile($clients[$nr]->ip, "UNIFI.IP");
+                    // IPS_SetVariableCustomProfile($clients[$nr]->ip, "UNIFI.IP");
                     
                     SetValueString(IPS_GetVariableIDByName("IP Adresse",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->ip);
                     SetValueBoolean(IPS_GetVariableIDByName("Anbindung",IPS_GetVariableIDByName($clients[$nr]->mac,(IPS_GetInstanceIDByName("Clients", $this->InstanceID)))), $clients[$nr]->is_wired);
