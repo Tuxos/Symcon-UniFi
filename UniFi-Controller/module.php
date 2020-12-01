@@ -436,6 +436,7 @@
             $results = $unifi_connection->list_clients();
 
             return $results;
+	}
 
     }
 
