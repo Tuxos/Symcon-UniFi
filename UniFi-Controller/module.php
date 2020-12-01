@@ -420,6 +420,22 @@
 
             return $results;
         }
+	   
+        // ### Liste alle Portforwards auf ###
+        public function list_portforwarding() {
+
+            $url = $this->ReadPropertyString("url");
+            $username = $this->ReadPropertyString("username");
+            $password = $this->ReadPropertyString("password");
+            $site = $this->ReadPropertyString("site");
+            $version = $this->ReadPropertyString("version");
+
+            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
+            $login = $unifi_connection->login();
+
+            $results = $unifi_connection->list_clients();
+
+            return $results;
 
     }
 
