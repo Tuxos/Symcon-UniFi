@@ -25,13 +25,22 @@
                 IPS_SetPosition($InsID, 2);
               }
 
+            $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("Portforward", $this->InstanceID));
+            if ($check == false)
+              {
+                $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+                IPS_SetName($InsID, "Portforward");
+                IPS_SetParent($InsID, $this->InstanceID);
+                IPS_SetPosition($InsID, 3);
+              }
+
             $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("Clients", $this->InstanceID));
             if ($check == false)
               {
                 $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
                 IPS_SetName($InsID, "Clients");
                 IPS_SetParent($InsID, $this->InstanceID);
-                IPS_SetPosition($InsID, 3);
+                IPS_SetPosition($InsID, 4);
               }
             
             $check = IPS_VariableProfileExists("UNIFI.Kabel");
@@ -151,7 +160,7 @@
 
         }
 
-        // ### Auslesen der Grundkonfiguration für WLAN und ob API Zugriff möglich. Wird zyklisch aufgerufen. ###
+        // ### Auslesen der Grundkonfiguration für WLAN & Portforwarding und ob API Zugriff möglich. Wird zyklisch aufgerufen. ###
         public function readdata() {
 
             $url = $this->ReadPropertyString("url");
