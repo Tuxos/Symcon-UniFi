@@ -177,6 +177,7 @@
                 $bool2 = "true";
             }
 
+            $enable = array();
             $enable->enabled = $bool;
             $payload = json_encode($enable);
 
