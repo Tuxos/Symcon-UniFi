@@ -177,7 +177,7 @@
                 $bool2 = "true";
             }
 
-            $enable->enabled = $bool2;
+            $enable->enabled = $bool;
             $payload = json_encode($enable);
 
             $urlportfwd          = '/api/s/'.$site.'/rest/portforward/'.$portfwd_id;
