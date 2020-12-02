@@ -271,12 +271,12 @@
                     IPS_SetVariableCustomProfile($VarID, "~Switch");
                     SetValueBoolean($VarID, $portfwd[$nr]->enabled);
 
-                    copy(IPS_GetKernelDir()."modules/Symcon-UniFi/libs/UNIFI_wlan-action-script.php", IPS_GetKernelDir()."scripts/UNIFI_wlan-action-script.php");
+                    copy(IPS_GetKernelDir()."modules/Symcon-UniFi/libs/UNIFI_portfwd-action-script.php", IPS_GetKernelDir()."scripts/UNIFI_portfwd-action-script.php");
                     $ScriptID = IPS_CreateScript(0);
                     IPS_SetParent ($ScriptID, $VarID);
-                    IPS_SetName($ScriptID, "wlan-action-script");
+                    IPS_SetName($ScriptID, "portfwd-action-script");
                     IPS_SetHidden($ScriptID, true);
-                    IPS_SetScriptFile($ScriptID, "UNIFI_wlan-action-script.php");
+                    IPS_SetScriptFile($ScriptID, "UNIFI_portfwd-action-script.php");
                     IPS_SetVariableCustomAction($VarID, $ScriptID);                    
                     IPS_SetPosition($ScriptID, 9);
 
@@ -317,7 +317,7 @@
                   }
             }
 
-            // Lösche im Controller nicht mehr vorhandene WLANs
+            // Lösche im Controller nicht mehr vorhandene Portforwards
             $portfwdids = array();
             $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID));
             foreach ($varids as $nr => $test)
