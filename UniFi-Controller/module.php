@@ -177,13 +177,25 @@
                 $bool2 = "true";
             }
 
+            $build->_id = $portfwd_id;
+            $build->name = "Homematic";
+            $build->enabbled = $bool;
+            $build->src = "any";
+            $build->dst_port = "443";
+            $build->fwd = "192.168.1.2";
+            $build->fwd_port = "443";
+            $build->proto = "tcp_udp";
+            $build->log = true;
+            $build->site_id = "5c4349c9ba3e820de56caf00";
+            $build->pfwd_interface = "wan";
+
             //$enable = array();
             //$enable->enabled = $bool;
-            //$payload = json_encode($enable);
+            $payload = json_encode($build);
 
             $urlportfwd          = '/api/s/'.$site.'/rest/portforward/'.$portfwd_id;
             $request_type = 'POST';
-            $payload      = '{"_id":"'.$portfwd_id.'","name":"Homematic","enabled":'.$bool2.',"src":"any","dst_port":"443","fwd":"192.168.1.2","fwd_port":"443","proto":"tcp_udp","log":true,"site_id":"5c4349c9ba3e820de56caf00","pfwd_interface":"wan"}';
+            //$payload      = '{"_id":"'.$portfwd_id.'","name":"Homematic","enabled":'.$bool2.',"src":"any","dst_port":"443","fwd":"192.168.1.2","fwd_port":"443","proto":"tcp_udp","log":true,"site_id":"5c4349c9ba3e820de56caf00","pfwd_interface":"wan"}';
             //$payload      = '{"enabled": true}';
             $return       = 'array';
 
