@@ -179,7 +179,7 @@
 
             $build->_id = $portfwd_id;
             $build->name = "Homematic";
-            $build->enabbled = $bool;
+            $build->enabled = $bool;
             $build->src = "any";
             $build->dst_port = "443";
             $build->fwd = "192.168.1.2";
