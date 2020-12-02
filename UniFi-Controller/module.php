@@ -197,7 +197,7 @@
             //$results = $unifi_connection->disable_wlan($portfwd_id, $bool);
             $results = $unifi_connection->custom_api_request($urlportfwd, $request_type, $payload, $return);
 
-            return $urlportfwd;
+            return $payload;
         }
     
 
