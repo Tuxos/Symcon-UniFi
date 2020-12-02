@@ -253,6 +253,97 @@
                 }
             }
 
+
+
+
+
+            $portfwd = $unifi_connection->list_portforwarding();
+
+            // Erstelle (falls noch nicht vorhanden) die Portforwards in IPSymcon. Falls schon vorhanden aktualisiere sie.
+            foreach ($portfwd as $nr => $test)
+            {
+                $check = IPS_VariableExists(@IPS_GetVariableIDByName($portfwd[$nr]->name, @IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)));
+                if ($check == false) 
+                  {
+                    $VarID = IPS_CreateVariable(0);
+                    IPS_SetName($VarID, $portfwd[$nr]->name);
+                    IPS_SetParent($VarID, IPS_GetInstanceIDByName("Portforwards", $this->InstanceID));
+                    IPS_SetVariableCustomProfile($VarID, "~Switch");
+                    SetValueBoolean($VarID, $portfwd[$nr]->enabled);
+
+                    copy(IPS_GetKernelDir()."modules/Symcon-UniFi/libs/UNIFI_wlan-action-script.php", IPS_GetKernelDir()."scripts/UNIFI_wlan-action-script.php");
+                    $ScriptID = IPS_CreateScript(0);
+                    IPS_SetParent ($ScriptID, $VarID);
+                    IPS_SetName($ScriptID, "wlan-action-script");
+                    IPS_SetHidden($ScriptID, true);
+                    IPS_SetScriptFile($ScriptID, "UNIFI_wlan-action-script.php");
+                    IPS_SetVariableCustomAction($VarID, $ScriptID);                    
+                    IPS_SetPosition($ScriptID, 2);
+
+                    $VarID = IPS_CreateVariable(3);
+                    IPS_SetName($VarID, "portfwd_id");
+                    IPS_SetParent($VarID, IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))));
+                    SetValueString($VarID, $portfwd[$nr]->_id);
+                    IPS_SetHidden($VarID, true);
+                    IPS_SetPosition($VarID, 0);
+                    $VarID = IPS_CreateVariable(3);
+                    IPS_SetName($VarID, "dest_ip");
+                    IPS_SetParent($VarID, IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))));
+                    SetValueString($VarID, $portfwd[$nr]->fwd);
+                    IPS_SetPosition($VarID, 1);
+                    IPS_SetVariableCustomAction($VarID, $ScriptID);
+                  } else // update bestehende Variablen
+                  {
+                    SetValueString(IPS_GetVariableIDByName("portfwd_id", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->_id);
+                    SetValueBoolean(IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))), $portfwd[$nr]->enabled);
+                    SetValueString(IPS_GetVariableIDByName("dest_ip", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->fwd);
+                  }
+            }
+
+            // Lösche im Controller nicht mehr vorhandene WLANs
+            $portfwdids = array();
+            $varids = IPS_GetChildrenIDs(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID));
+            foreach ($varids as $nr => $test)
+            {
+                $id = IPS_GetVariableIDByName("portfwd_id", $varids[$nr]);
+                $check = GetValueString($id);
+                array_push($portfwdids,$check);
+            } 
+            $portfwdidsuc = array();
+            foreach ($portfwd as $nr => $test)
+            {
+                array_push($portfwdidsuc, $portfwd[$nr]->_id);
+            }
+            $exist = array_diff($portfwdids, $portfwdidsuc);
+            if (empty($exist) == false) 
+            {
+                foreach($exist as $nr => $test)
+                {
+                    foreach ($varids as $nr2 => $test)
+                    {
+                        $id = IPS_GetParent(IPS_GetVariableIDByName("portfwd_id", $varids[$nr2]));
+                        $idchild = GetValueString(IPS_GetVariableIDByName("portfwd_id", $id));
+                        if ($exist[$nr] == $idchild)                      
+                        {
+                            $children = IPS_GetChildrenIDs($id);
+                            foreach ($children as $nr3 => $test)
+                            {
+                                UNIFI_DeleteObject($this->InstanceID, $children[$nr3]);
+                            }
+                            UNIFI_DeleteObject($this->InstanceID, $id);
+                        }
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+
             // Login möglich oder nicht möglich - return Ausgabe der Funktion
             if ($login == "bool(true)")
             {
