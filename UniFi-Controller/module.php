@@ -278,7 +278,7 @@
                     IPS_SetHidden($ScriptID, true);
                     IPS_SetScriptFile($ScriptID, "UNIFI_wlan-action-script.php");
                     IPS_SetVariableCustomAction($VarID, $ScriptID);                    
-                    IPS_SetPosition($ScriptID, 2);
+                    IPS_SetPosition($ScriptID, 9);
 
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "portfwd_id");
@@ -286,17 +286,26 @@
                     SetValueString($VarID, $portfwd[$nr]->_id);
                     IPS_SetHidden($VarID, true);
                     IPS_SetPosition($VarID, 0);
+
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "dest_ip");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))));
                     SetValueString($VarID, $portfwd[$nr]->fwd);
                     IPS_SetPosition($VarID, 1);
                     IPS_SetVariableCustomAction($VarID, $ScriptID);
+
+                    $VarID = IPS_CreateVariable(3);
+                    IPS_SetName($VarID, "dest_port");
+                    IPS_SetParent($VarID, IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))));
+                    SetValueString($VarID, $portfwd[$nr]->dst_port);
+                    IPS_SetPosition($VarID, 2);
+                    IPS_SetVariableCustomAction($VarID, $ScriptID);
                   } else // update bestehende Variablen
                   {
                     SetValueString(IPS_GetVariableIDByName("portfwd_id", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->_id);
                     SetValueBoolean(IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))), $portfwd[$nr]->enabled);
                     SetValueString(IPS_GetVariableIDByName("dest_ip", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->fwd);
+                    SetValueString(IPS_GetVariableIDByName("dest_port", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->dest_port);
                   }
             }
 
