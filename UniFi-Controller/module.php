@@ -25,11 +25,11 @@
                 IPS_SetPosition($InsID, 2);
               }
 
-            $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("Portforward", $this->InstanceID));
+            $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID));
             if ($check == false)
               {
                 $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
-                IPS_SetName($InsID, "Portforward");
+                IPS_SetName($InsID, "Portforwards");
                 IPS_SetParent($InsID, $this->InstanceID);
                 IPS_SetPosition($InsID, 3);
               }
