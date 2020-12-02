@@ -180,7 +180,7 @@
             $urlportfwd          = '/api/s/' . $site . '/rest/portforward/' . $portfwd_id;
             $request_type = 'PUT';
             //$payload      = '{"_id":"'.$portfwd_id.'","name":"Homematic","enabled":'.$bool2.',"src":"any","dst_port":"443","fwd":"192.168.1.2","fwd_port":"443","proto":"tcp_udp","log":true,"site_id":"5c4349c9ba3e820de56caf00","pfwd_interface":"wan"}';
-            $payload      = "{"enabled": true}";
+            $payload      = '{"enabled": true}';
             $return       = 'array';
 
             // Looks like all I will need to do is make a PUT request to https://unifi.redacted/proxy/network/api/s/default/rest/portforward/12345679
