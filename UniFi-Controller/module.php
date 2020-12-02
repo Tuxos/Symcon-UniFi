@@ -313,7 +313,7 @@
                     SetValueBoolean(IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))), $portfwd[$nr]->enabled);
                     SetValueString(IPS_GetVariableIDByName("src_port", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->fwd_port);
                     SetValueString(IPS_GetVariableIDByName("dest_ip", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->fwd);
-                    SetValueString(IPS_GetVariableIDByName("dest_port", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->dest_port);
+                    SetValueString(IPS_GetVariableIDByName("dest_port", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->dst_port);
                   }
             }
 
