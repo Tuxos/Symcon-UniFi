@@ -285,7 +285,14 @@
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))));
                     SetValueString($VarID, $portfwd[$nr]->_id);
                     IPS_SetHidden($VarID, true);
+                    IPS_SetPosition($VarID, 8);
+
+                    $VarID = IPS_CreateVariable(3);
+                    IPS_SetName($VarID, "src_port");
+                    IPS_SetParent($VarID, IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))));
+                    SetValueString($VarID, $portfwd[$nr]->fwd_port);
                     IPS_SetPosition($VarID, 0);
+                    IPS_SetVariableCustomAction($VarID, $ScriptID);
 
                     $VarID = IPS_CreateVariable(3);
                     IPS_SetName($VarID, "dest_ip");
@@ -304,6 +311,7 @@
                   {
                     SetValueString(IPS_GetVariableIDByName("portfwd_id", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->_id);
                     SetValueBoolean(IPS_GetVariableIDByName($portfwd[$nr]->name,(@IPS_GetInstanceIDByName("Portforwards", $this->InstanceID))), $portfwd[$nr]->enabled);
+                    SetValueString(IPS_GetVariableIDByName("src_port", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->fwd_port);
                     SetValueString(IPS_GetVariableIDByName("dest_ip", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->fwd);
                     SetValueString(IPS_GetVariableIDByName("dest_port", IPS_GetVariableIDByName($portfwd[$nr]->name,(IPS_GetInstanceIDByName("Portforwards", $this->InstanceID)))), $portfwd[$nr]->dest_port);
                   }
