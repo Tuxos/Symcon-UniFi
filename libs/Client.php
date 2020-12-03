@@ -2967,7 +2967,7 @@ class Client
             return $this->fetch_results_boolean($path, $payload);
         }
 
-        return false;
+        //return false;
     }
 
     /****************************************************************

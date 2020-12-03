@@ -189,13 +189,15 @@
             //$build->site_id = "5c4349c9ba3e820de56caf00";
             //$build->pfwd_interface = "wan";
 
-            $build = array(
+            $build = [
                 "enabled" => $bool,
-            );
+            ];
+
+            $payload = $build;
 
             //$enable = array();
             //$enable->enabled = $bool;
-            $payload = json_encode($build);
+            //$payload = json_encode($build);
 
             $urlportfwd          = '/api/s/'.$site.'/rest/portforward/'.$portfwd_id;
             $request_type = 'PUT';
