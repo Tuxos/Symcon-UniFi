@@ -8,10 +8,10 @@
       {
         if ($_IPS['VALUE'] == false)
         {
-          UNIFI_disable_portfwd(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE'])), GetValueString(IPS_GetVariableIDByName("portfwd_id", $_IPS['VARIABLE'])), true);
+          UNIFI_enable_portfwd(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE'])), GetValueString(IPS_GetVariableIDByName("portfwd_id", $_IPS['VARIABLE'])), false);
         } else
         {
-          UNIFI_disable_portfwd(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE'])), GetValueString(IPS_GetVariableIDByName("portfwd_id", $_IPS['VARIABLE'])), false);
+          UNIFI_enable_portfwd(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE'])), GetValueString(IPS_GetVariableIDByName("portfwd_id", $_IPS['VARIABLE'])), true);
         }
       }
     
