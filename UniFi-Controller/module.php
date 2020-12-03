@@ -160,6 +160,7 @@
 
         }
 
+        // ### Enable / Disable Portforward
         public function enable_portfwd($portfwd_id, $bool) {
 
             $url = $this->ReadPropertyString("url");
@@ -168,52 +169,16 @@
             $site = $this->ReadPropertyString("site");
             $version = $this->ReadPropertyString("version");
 
-            if ($bool == true)
-            {
-                $bool2 = "false";
-            }
-            else
-            {
-                $bool2 = "true";
-            }
-
-            //$build->_id = $portfwd_id;
-            //$build->name = "Homematic";
-            //$build->enabled = $bool;
-            //$build->src = "any";
-            //$build->dst_port = "443";
-            //$build->fwd = "192.168.1.2";
-            //$build->fwd_port = "443";
-            //$build->proto = "tcp_udp";
-            //$build->log = true;
-            //$build->site_id = "5c4349c9ba3e820de56caf00";
-            //$build->pfwd_interface = "wan";
-
             $payload = [
                 "enabled" => $bool,
             ];
 
-            //$payload = $build;
-
-            //$enable = array();
-            //$enable->enabled = $bool;
-            //$payload = json_encode($build);
-
             $urlportfwd          = '/api/s/'.$site.'/rest/portforward/'.$portfwd_id;
             $request_type = 'PUT';
-            //$payload      = '{"_id":"'.$portfwd_id.'","name":"Homematic","enabled":'.$bool2.',"src":"any","dst_port":"443","fwd":"192.168.1.2","fwd_port":"443","proto":"tcp_udp","log":true,"site_id":"5c4349c9ba3e820de56caf00","pfwd_interface":"wan"}';
-            //$payload      = '{"enabled": true}';
             $return       = 'array';
-
-            // Looks like all I will need to do is make a PUT request to https://unifi.redacted/proxy/network/api/s/default/rest/portforward/12345679
-            // With a body of something like:
-            // {"_id":"12345679","name":"REDACTED","enabled":true,"src":"any","dst_port":"1-4","fwd":"10.X.X.X","fwd_port":"1-4","proto":"tcp","log":true,"site_id":"987654321","pfwd_interface":"wan"}
-
 
             $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
             $login = $unifi_connection->login();
-
-            //$results = $unifi_connection->disable_wlan($portfwd_id, $bool);
             $results = $unifi_connection->custom_api_request($urlportfwd, $request_type, $payload, $return);
 
             return $results;
