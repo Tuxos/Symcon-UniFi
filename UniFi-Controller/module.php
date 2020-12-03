@@ -177,17 +177,21 @@
                 $bool2 = "true";
             }
 
-            $build->_id = $portfwd_id;
-            $build->name = "Homematic";
-            $build->enabled = $bool;
-            $build->src = "any";
-            $build->dst_port = "443";
-            $build->fwd = "192.168.1.2";
-            $build->fwd_port = "443";
-            $build->proto = "tcp_udp";
-            $build->log = true;
-            $build->site_id = "5c4349c9ba3e820de56caf00";
-            $build->pfwd_interface = "wan";
+            //$build->_id = $portfwd_id;
+            //$build->name = "Homematic";
+            //$build->enabled = $bool;
+            //$build->src = "any";
+            //$build->dst_port = "443";
+            //$build->fwd = "192.168.1.2";
+            //$build->fwd_port = "443";
+            //$build->proto = "tcp_udp";
+            //$build->log = true;
+            //$build->site_id = "5c4349c9ba3e820de56caf00";
+            //$build->pfwd_interface = "wan";
+
+            $build = array(
+                "enabled" => $bool,
+            );
 
             //$enable = array();
             //$enable->enabled = $bool;
