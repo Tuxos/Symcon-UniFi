@@ -160,7 +160,7 @@
 
         }
 
-        public function disable_portfwd($portfwd_id, $bool) {
+        public function enable_portfwd($portfwd_id, $bool) {
 
             $url = $this->ReadPropertyString("url");
             $username = $this->ReadPropertyString("username");
@@ -189,11 +189,11 @@
             //$build->site_id = "5c4349c9ba3e820de56caf00";
             //$build->pfwd_interface = "wan";
 
-            $build = [
+            $payload = [
                 "enabled" => $bool,
             ];
 
-            $payload = $build;
+            //$payload = $build;
 
             //$enable = array();
             //$enable->enabled = $bool;
