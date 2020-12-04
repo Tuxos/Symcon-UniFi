@@ -572,7 +572,7 @@
         }
         
         // ### Blocke einen Client anhand der MAC Adresse ###
-        public function list_block_client($mac) {
+        public function block_client($mac) {
 
             $url = $this->ReadPropertyString("url");
             $username = $this->ReadPropertyString("username");
@@ -589,7 +589,7 @@
         }
         
         // ### Unblocke einen Client anhand der MAC Adresse ###
-        public function list_unblock_client($mac) {
+        public function unblock_client($mac) {
 
             $url = $this->ReadPropertyString("url");
             $username = $this->ReadPropertyString("username");
