@@ -459,6 +459,7 @@
                IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                IPS_SetVariableCustomProfile($VarID, "~Switch");
                SetValueBoolean($VarID, false);
+               IPS_SetPosition($VarID, 5);
              }
             }
 
