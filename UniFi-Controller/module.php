@@ -456,7 +456,7 @@
                
                $VarID = IPS_CreateVariable(0);
                IPS_SetName($VarID, "Blocked");
-               IPS_SetParent($VarID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
+               IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                IPS_SetVariableCustomProfile($VarID, "~Switch");
                SetValueBoolean($VarID, false);
              }
