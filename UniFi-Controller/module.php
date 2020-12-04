@@ -459,7 +459,15 @@
                IPS_SetParent($VarID, IPS_GetVariableIDByName($clients[$nr]->ip,(IPS_GetInstanceIDByName("Clients", $this->InstanceID))));
                IPS_SetVariableCustomProfile($VarID, "~Switch");
                SetValueBoolean($VarID, false);
-               IPS_SetPosition($VarID, 5);
+               IPS_SetPosition($VarID, 5); 
+               copy(IPS_GetKernelDir()."modules/Symcon-UniFi/libs/UNIFI_client-action-script.php", IPS_GetKernelDir()."scripts/UNIFI_portfwd-action-script.php");
+               $ScriptID = IPS_CreateScript(0);
+               IPS_SetParent ($ScriptID, IPS_GetParent($VarID));
+               IPS_SetName($ScriptID, "client-action-script");
+               IPS_SetHidden($ScriptID, true);
+               IPS_SetScriptFile($ScriptID, "UNIFI_client-action-script.php");
+               IPS_SetVariableCustomAction($VarID, $ScriptID);                    
+               IPS_SetPosition($ScriptID, 9);
              }
             }
 
