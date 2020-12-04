@@ -460,7 +460,7 @@
                IPS_SetVariableCustomProfile($VarID, "~Switch");
                SetValueBoolean($VarID, false);
                IPS_SetPosition($VarID, 5); 
-               copy(IPS_GetKernelDir()."modules/Symcon-UniFi/libs/UNIFI_client-action-script.php", IPS_GetKernelDir()."scripts/UNIFI_portfwd-action-script.php");
+               copy(IPS_GetKernelDir()."modules/Symcon-UniFi/libs/UNIFI_client-action-script.php", IPS_GetKernelDir()."scripts/UNIFI_client-action-script.php");
                $ScriptID = IPS_CreateScript(0);
                IPS_SetParent ($ScriptID, IPS_GetParent($VarID));
                IPS_SetName($ScriptID, "client-action-script");
