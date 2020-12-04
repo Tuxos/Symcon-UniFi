@@ -453,6 +453,12 @@
                $lastseen = date("H:i:s", $clients[$nr]->last_seen);
                SetValueString($VarID, $lastseen);
                IPS_SetPosition($VarID, 4);
+               
+               $VarID = IPS_CreateVariable(0);
+               IPS_SetName($VarID, "Blocked");
+               IPS_SetParent($VarID, IPS_GetInstanceIDByName("Clients", $this->InstanceID));
+               IPS_SetVariableCustomProfile($VarID, "~Switch");
+               SetValueBoolean($VarID, false);
              }
             }
 
@@ -552,6 +558,40 @@
             $login = $unifi_connection->login();
 
             $results = $unifi_connection->list_clients();
+
+            return $results;
+        }
+        
+        // ### Blocke einen Client anhand der MAC Adresse ###
+        public function list_block_client($mac) {
+
+            $url = $this->ReadPropertyString("url");
+            $username = $this->ReadPropertyString("username");
+            $password = $this->ReadPropertyString("password");
+            $site = $this->ReadPropertyString("site");
+            $version = $this->ReadPropertyString("version");
+
+            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
+            $login = $unifi_connection->login();
+
+            $results = $unifi_connection->block_sta($mac);
+
+            return $results;
+        }
+        
+        // ### Unblocke einen Client anhand der MAC Adresse ###
+        public function list_unblock_client($mac) {
+
+            $url = $this->ReadPropertyString("url");
+            $username = $this->ReadPropertyString("username");
+            $password = $this->ReadPropertyString("password");
+            $site = $this->ReadPropertyString("site");
+            $version = $this->ReadPropertyString("version");
+
+            $unifi_connection = new UniFi_API\Client($username, $password, $url, $site, $version, false);
+            $login = $unifi_connection->login();
+
+            $results = $unifi_connection->unblock_sta($mac);
 
             return $results;
         }

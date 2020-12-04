@@ -14,9 +14,5 @@
           UNIFI_enable_portfwd(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE'])), GetValueString(IPS_GetVariableIDByName("portfwd_id", $_IPS['VARIABLE'])), true);
         }
       }
-    
-    If ($VarInf['VariableType'] == 3)
-      {
-        UNIFI_set_portfwd_name(IPS_GetParent(IPS_GetParent(IPS_GetParent($_IPS['VARIABLE']))), GetValueString(IPS_GetVariableIDByName("portfwd_id", IPS_GetParent($_IPS['VARIABLE']))), $_IPS['VALUE']);
-      }
+
 ?>
