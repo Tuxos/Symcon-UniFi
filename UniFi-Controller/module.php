@@ -232,6 +232,7 @@
                     IPS_SetName($VarID, "Passphrase");
                     IPS_SetParent($VarID, IPS_GetVariableIDByName($wlan[$nr]->name,(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID))));
                     SetValueString($VarID, $wlan[$nr]->x_passphrase);
+                    IPS_SetHidden($VarID, true);
                     IPS_SetPosition($VarID, 1);
                     IPS_SetVariableCustomAction($VarID, $ScriptID);
                   } else // update bestehende Variablen
