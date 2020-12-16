@@ -1,7 +1,7 @@
 {
     "elements":
     [
-        { "type": "ValidationTextBox", "name": "url", "caption": "Controller URL (https://[IP Controller]:[Port Controller])" },
+        { "type": "ValidationTextBox", "name": "url", "caption": "Controller URL (https://IP:Port)" },
         { "type": "ValidationTextBox", "name": "username", "caption": "Username" },
         { "type": "PasswordTextBox", "name": "password", "caption": "Password" },
         { "type": "ValidationTextBox", "name": "site", "caption": "Site ID" },
