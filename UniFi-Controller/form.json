@@ -6,7 +6,7 @@
         { "type": "PasswordTextBox", "name": "password", "caption": "Password" },
         { "type": "ValidationTextBox", "name": "site", "caption": "Site ID" },
         { "type": "ValidationTextBox", "name": "version", "caption": "Version" },
-        { "type": "NumberSpinner" , "name" : "intervall", "caption": "Aktual. Intervall" }
+        { "type": "NumberSpinner" , "name" : "intervall", "caption": "Aktualisierungs Intervall aller Daten" }
     ],
     "actions":
     [
