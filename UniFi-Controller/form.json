@@ -3,7 +3,7 @@
     [
         { "type": "ValidationTextBox", "name": "url", "caption": "Controller URL" },
         { "type": "ValidationTextBox", "name": "username", "caption": "Username" },
-        { "type": "ValidationTextBox", "name": "password", "caption": "Password" },
+        { "type": "PasswordTextBox", "name": "password", "caption": "Password" },
         { "type": "ValidationTextBox", "name": "site", "caption": "Site ID" },
         { "type": "ValidationTextBox", "name": "version", "caption": "Version" },
         { "type": "ValidationTextBox" , "name" : "intervall", "caption": "Aktual. Intervall" }
