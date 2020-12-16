@@ -6,11 +6,11 @@
         { "type": "PasswordTextBox", "name": "password", "caption": "Password" },
         { "type": "ValidationTextBox", "name": "site", "caption": "Site ID" },
         { "type": "ValidationTextBox", "name": "version", "caption": "Controller Version" },
-        { "type": "NumberSpinner" , "name" : "intervall", "caption": "Intervall Datenaktualisierung" }
+        { "type": "NumberSpinner" , "name" : "intervall", "caption": "Intervall Datenaktualisierung in Sekunden" }
     ],
     "actions":
     [
-        { "type": "Button", "label": "Einlesen der Konfiguration", "onClick": "UNIFI_readdata($id);" }
+        { "type": "Button", "label": "Einlesen der Konfiguration", "onClick": "UNIFI_readdata($id); UNIFI_readdata_clients($id);" }
     ],
     "status":
     [
