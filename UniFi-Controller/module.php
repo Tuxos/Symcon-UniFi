@@ -9,11 +9,11 @@
             // Diese Zeile nicht löschen.
             parent::Create();
  
-            $this->RegisterPropertyString("url", "https://192.168.1.7:8443");
+            $this->RegisterPropertyString("url", "https://192.168.1.1");
             $this->RegisterPropertyString("username", "api_user");
             $this->RegisterPropertyString("password", "");
             $this->RegisterPropertyString("site", "default");
-            $this->RegisterPropertyString("version", "5.12.35");
+            $this->RegisterPropertyString("version", "6.0.41");
             $this->RegisterPropertyInteger("intervall", "120");
 
             $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
@@ -41,6 +41,15 @@
                 IPS_SetName($InsID, "Clients");
                 IPS_SetParent($InsID, $this->InstanceID);
                 IPS_SetPosition($InsID, 4);
+              }
+		
+	    $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("Favorites", $this->InstanceID));
+            if ($check == false)
+              {
+                $InsID = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+                IPS_SetName($InsID, "Favorites");
+                IPS_SetParent($InsID, $this->InstanceID);
+                IPS_SetPosition($InsID, 5);
               }
             
             $check = IPS_VariableProfileExists("UNIFI.Kabel");
