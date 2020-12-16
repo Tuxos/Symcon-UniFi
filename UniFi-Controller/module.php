@@ -14,7 +14,7 @@
             $this->RegisterPropertyString("password", "");
             $this->RegisterPropertyString("site", "default");
             $this->RegisterPropertyString("version", "6.0.41");
-            $this->RegisterPropertyInteger("intervall", "120");
+            $this->RegisterPropertyInteger("intervall", "300");
 
             $check = IPS_InstanceExists(@IPS_GetInstanceIDByName("WLAN", $this->InstanceID));
             if ($check == false)
