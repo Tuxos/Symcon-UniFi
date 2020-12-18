@@ -77,7 +77,7 @@
 
             $this->RegisterVariableBoolean("online", "Online", "~Switch",1);
 
-            $id = $this->RegisterTimerUNIFI('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_readdata($id);');
+            $id = $this->RegisterTimerUNIFI('Update', $this->ReadPropertyInteger('intervall'), 'UNIFI_readdata($id)');
             IPS_SetPosition($id, 9);
 
             // setze Status in der Instanzkonfiguration
